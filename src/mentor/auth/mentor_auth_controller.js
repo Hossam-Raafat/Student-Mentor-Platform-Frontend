@@ -1,7 +1,8 @@
-angular.module('askMak')
-.controller('studentAuthCtrl', function($scope, $auth) {
+angular.module('askMak').controller('mentorAuthCtrl', function($scope, $auth) {
         $scope.login = function() {
-          $auth.submitLogin($scope.loginForm,{config: 'manager'})
+          $auth.submitLogin($scope.loginForm,{
+              config: 'mentor' // dont forget to add {config: 'mentor'}
+          })
             .then(function(resp) {
               console.log(resp)
             })
