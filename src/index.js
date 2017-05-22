@@ -47,7 +47,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $aut
   $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
   // rid of the '/#!/' in the url.
 
-  $urlRouterProvider.otherwise('/');
+
   $stateProvider
   // HOME STATES AND NESTED VIEWS ========================================
   .state('student', {
@@ -62,4 +62,5 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $aut
     url: '/mentor/auth',
     templateUrl: '/mentor/auth/mentor_auth.html'
   });
+  $urlRouterProvider.otherwise('/');
 });

@@ -1,9 +1,3 @@
-exports.config = {
-  seleniumAddress: 'http://localhost:3001/manager/auth',
-
-  specs: ['manager_auth_controller.js']
-};
-
 describe('login page', function () {
   browser.driver.get('http://localhost:3001/manager/auth');
   it('should render login page', function () {

@@ -1,16 +1,11 @@
-exports.config = {
-  seleniumAddress: 'http://localhost:3001/mentor/auth',
-
-  specs: ['mentor_auth_controller.js']
-};
 
 describe('login page', function () {
-  browser.driver.get('http://localhost:3001/mentor/auth');
+  browser.driver.get('http://localhost:3001/student/auth');
   it('should render login page', function () {
 
       // Checking the current url
     var currentUrl = browser.driver.getCurrentUrl();
-    expect(currentUrl).toMatch('/mentor/auth');
+    expect(currentUrl).toMatch('/student/auth');
   });
   it('should sign in', function () {
 

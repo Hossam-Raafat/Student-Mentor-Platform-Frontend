@@ -1,16 +1,11 @@
-exports.config = {
-  seleniumAddress: 'http://localhost:3001/student/auth',
-
-  specs: ['student_auth_controller.js']
-};
 
 describe('login page', function () {
-  browser.driver.get('http://localhost:3001/student/auth');
+  browser.driver.get('http://localhost:3001/mentor/auth');
   it('should render login page', function () {
 
       // Checking the current url
     var currentUrl = browser.driver.getCurrentUrl();
-    expect(currentUrl).toMatch('/student/auth');
+    expect(currentUrl).toMatch('/mentor/auth');
   });
   it('should sign in', function () {
 
