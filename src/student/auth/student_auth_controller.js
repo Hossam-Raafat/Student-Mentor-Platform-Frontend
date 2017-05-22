@@ -1,4 +1,4 @@
-angular.module('askMak').controller('studentAuthCtrl', function ($scope, $auth) {
+angular.module('askMak').controller('studentAuthController', function ($scope, $auth) {
   $scope.login = function () {
     $auth.submitLogin($scope.loginForm, {
       config: 'student' // dont forget to add {config: 'student'}

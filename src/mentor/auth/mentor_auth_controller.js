@@ -1,4 +1,4 @@
-angular.module('askMak').controller('mentorAuthCtrl', function ($scope, $auth) {
+angular.module('askMak').controller('mentorAuthController', function ($scope, $auth) {
   $scope.login = function () {
     $auth.submitLogin($scope.loginForm, {
       config: 'mentor' // dont forget to add {config: 'student'}

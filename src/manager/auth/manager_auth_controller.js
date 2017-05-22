@@ -1,4 +1,4 @@
-angular.module('askMak').controller('managerAuthCtrl', function ($scope, $auth) {
+angular.module('askMak').controller('managerAuthController', function ($scope, $auth) {
   $scope.login = function () {
     $auth.submitLogin($scope.loginForm, {
       config: 'manager' // dont forget to add {config: 'manager'}

@@ -5,7 +5,7 @@ describe('login page', function () {
 
       // Checking the current url
     var currentUrl = browser.driver.getCurrentUrl();
-    expect(currentUrl).toMatch('/student/auth');
+    expect(currentUrl).toMatch('http://localhost:3001/student/auth');
   });
   it('should sign in', function () {
 
@@ -25,7 +25,7 @@ describe('login page', function () {
       // Click to sign in - waiting for Angular as it is manually bootstrapped.
     userLoginBtn.click().then(function () {
       browser.waitForAngular();
-      expect(browser.driver.getCurrentUrl()).toMatch('/student/home');
+      expect(browser.driver.getCurrentUrl()).toMatch('http://localhost:3001/student/home');
     }, 10000);
   });
 });

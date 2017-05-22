@@ -1,7 +1,7 @@
-<div ng-controller="mentorAuthCtrl">
+<div ng-controller="mentorAuthController">
       <form method="post" ng-submit="login()" ng-init="loginForm = {}">
-        <input type="email"  ng-model="loginForm.email" placeholder="email">
-        <input type="password" ng-model="loginForm.password" value="" placeholder="password">
-        <button type="submit" name="button">login</button>
+        <input id="email" type="email"  ng-model="loginForm.email" placeholder="email">
+        <input id="password" type="password" ng-model="loginForm.password" value="" placeholder="password">
+        <button id="loginbtn" type="submit" name="button">login</button>
       </form>
 </div>

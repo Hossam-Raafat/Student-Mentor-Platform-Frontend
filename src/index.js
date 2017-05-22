@@ -5,8 +5,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $aut
 
     {
       mentor: {
-        apiUrl:          'http://localhost:3000',
-        signOutUrl:      '/mentor/auth/sign_out',
+        apiUrl: 'http://localhost:3000',
+        signOutUrl: '/mentor/auth/sign_out',
         emailSignInPath: '/mentor/auth/sign_in',
         emailRegistrationPath: '/mentor/auth',
         accountUpdatePath: '/mentor/auth',
@@ -18,8 +18,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $aut
     },
     {
       student: {
-		    apiUrl:          'http://localhost:3000',
-        signOutUrl:     '/student/auth/sign_out',
+        apiUrl: 'http://localhost:3000',
+        signOutUrl: '/student/auth/sign_out',
         emailSignInPath: '/student/auth/sign_in',
         emailRegistrationPath: '/student/auth',
         accountUpdatePath: '/student/auth',
@@ -31,8 +31,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $aut
     },
     {
       manager: {
-        apiUrl:         'http://localhost:3000',
-        signOutUrl:     '/manager/auth/sign_out',
+        apiUrl: 'http://localhost:3000',
+        signOutUrl: '/manager/auth/sign_out',
         emailSignInPath: '/manager/auth/sign_in',
         emailRegistrationPath: '/manager/auth',
         accountUpdatePath: '/manager/auth',
@@ -46,7 +46,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $aut
 
   $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
   // rid of the '/#!/' in the url.
-
 
   $stateProvider
   // HOME STATES AND NESTED VIEWS ========================================
