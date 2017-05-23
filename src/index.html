@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <base href="/">
     <meta charset="utf-8">
     <title>FountainJS</title>
     <meta name="description" content="">
@@ -12,7 +13,7 @@
     <!-- run `gulp inject` to automatically populate bower styles dependencies -->
     <!-- endbower -->
     <!-- endbuild -->
-
+ 
     <!-- build:css({.tmp,src}) styles/app.css -->
     <link rel="stylesheet" href="index.css"/>
     <!-- endbuild -->
@@ -20,7 +21,8 @@
 
 
   <body ng-app="askMak">
-    <ng-view>
+    <h1>ASK-MAK</h1>
+    <div ui-view></div>
   </body>
 
   <!-- build:js({.tmp,src}) scripts/vendor.js -->
