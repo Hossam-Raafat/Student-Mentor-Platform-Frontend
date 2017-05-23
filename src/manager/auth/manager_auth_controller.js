@@ -3,11 +3,12 @@ angular.module('askMak').controller('managerAuthController', function ($scope, $
     $auth.submitLogin($scope.loginForm, {
       config: 'manager' // dont forget to add {config: 'manager'}
     })
-      .then(function (resp) {
-        console.log(resp);
-      })
-      .catch(function (resp) {
-        console.log(resp);
-      });
+    .then(function (resp) {
+      console.log(resp);
+    })
+    .catch(function (resp) {
+      console.log(resp);
+    });
   };
 });
+

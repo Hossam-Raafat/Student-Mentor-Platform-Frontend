@@ -1,0 +1,11 @@
+<div ng-controller="managerInviteCtrl">
+      <form method="post" ng-submit="inviteMentor()" >
+        <input type="email"  ng-model="mentorEmail" placeholder="mentor email">
+        <button type="submit" name="button">Invite mentor</button>
+      </form>
+
+      <form method="post" ng-submit="inviteStudent()" >
+        <input type="email"  ng-model="studentEmail" placeholder="student email">
+        <button type="submit" name="button">Invite student</button>
+      </form>
+</div>
