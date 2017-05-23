@@ -14,6 +14,7 @@ angular.module('askMak').controller('studentAcceptCtrl', function($scope, $auth,
             // invitation routes, you should find '/auth/invitation'
             function(success){
               console.log(success);
+              // here we will need to redirect the new student to his dashboard/homepage
             },
             function(error){
               console.log('ERROR');
