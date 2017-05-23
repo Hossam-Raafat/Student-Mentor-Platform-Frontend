@@ -1,11 +1,11 @@
 
 describe('login page', function () {
-  browser.driver.get('http://localhost:3001/student/auth');
+  browser.driver.get('http://localhost:3001');
   it('should render login page', function () {
 
       // Checking the current url
     var currentUrl = browser.driver.getCurrentUrl();
-    expect(currentUrl).toMatch('http://localhost:3001/student/auth');
+    expect(currentUrl).toMatch('http://localhost:3001');
   });
   it('should sign in', function () {
 
