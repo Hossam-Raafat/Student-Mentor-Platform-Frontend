@@ -1,6 +1,24 @@
 
 var app = angular.module('askMak', ['ng-token-auth','ui.router'])
 	app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$authProvider) {
+
+
+    function CheckForAuthenticatedUser($auth, $state) {
+        return $auth.validateUser().then(function (user) {
+            // if resolved successfully return a user object that will set
+            // the variable `resolvedUser`
+            if(user.configName === 'manager'){
+              return user;
+            }
+            else {
+              $state.go('student');
+            }
+
+        }, function (_error) {
+            $state.go('student');
+        })
+    }
+
     $authProvider.configure([
     
     {
@@ -50,9 +68,9 @@ var app = angular.module('askMak', ['ng-token-auth','ui.router'])
     // rid of the '/#!/' in the url.
 
     $urlRouterProvider.otherwise('/');
+    
+    // HOME STATES AND NESTED VIEWS ========================================
     $stateProvider
-
-        // HOME STATES AND NESTED VIEWS ========================================
         .state('student', {
             url: '/',
             templateUrl: '/student/auth/student_auth.html'
@@ -68,6 +86,23 @@ var app = angular.module('askMak', ['ng-token-auth','ui.router'])
             templateUrl: '/mentor/auth/mentor_auth.html'
         })
 
+        .state('managerInvite', {
+            url: '/manager/invite',
+            templateUrl: '/manager/invitation/manager_invitation.html',
+            resolve: {
+              resolvedUser: CheckForAuthenticatedUser
+            }
+        })
+
+        .state('mentorAcceptInvitation',{
+            url: '/mentor/accept/:token',
+            templateUrl: '/mentor/invitable/mentor_accept_invitation.html'
+        })
+
+        .state('studentAcceptInvitation',{
+            url: '/student/accept/:token',
+            templateUrl: '/student/invitable/student_accept_invitation.html'
+        })
 
 	});
 

@@ -10,4 +10,20 @@ angular.module('askMak').controller('managerAuthCtrl', function($scope, $auth) {
               console.log(resp)
             });
         };
+
   });
+
+/*
+$scope.invite = function(){
+  $http.post('local', {email: "taha@email.com"}).then()
+}
+
+iin Rails:
+
+Manager Controller
+
+def invite
+  params[:email] (make sure you permit it)
+end
+
+*/
