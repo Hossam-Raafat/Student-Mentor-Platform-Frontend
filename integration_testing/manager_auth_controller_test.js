@@ -4,7 +4,7 @@ describe('login page', function () {
 
       // Checking the current url
     var currentUrl = browser.driver.getCurrentUrl();
-    expect(currentUrl).toMatch('/manager/auth');
+    expect(currentUrl).toMatch('http://localhost:3001/manager/auth');
   });
   it('should sign in', function () {
 
