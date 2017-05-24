@@ -12,7 +12,7 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     }, function (_error) {
       $state.go('student');
     });
-  }
+  } 
 
   $authProvider.configure([{
     mentor: {
@@ -55,28 +55,26 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
   $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
   // rid of the '/#!/' in the url.
 
-  $urlRouterProvider.otherwise('/');
-
   // HOME STATES AND NESTED VIEWS ========================================
   $stateProvider
     .state('student', {
       url: '/',
-      templateUrl: '/student/auth/student_auth.html'
+      templateUrl: 'app/student/auth/student_auth.html'
     })
 
   .state('manager', {
     url: '/manager/auth',
-    templateUrl: '/manager/auth/manager_auth.html'
+    templateUrl: 'app/manager/auth/manager_auth.html'
   })
 
   .state('mentor', {
     url: '/mentor/auth',
-    templateUrl: '/mentor/auth/mentor_auth.html'
+    templateUrl: 'app/mentor/auth/mentor_auth.html'
   })
 
   .state('managerInvite', {
     url: '/manager/invite',
-    templateUrl: '/manager/invitation/manager_invitation.html',
+    templateUrl: 'app/manager/invitation/manager_invitation.html',
     resolve: {
       resolvedUser: CheckForAuthenticatedUser
     }
@@ -84,11 +82,14 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
 
   .state('mentorAcceptInvitation', {
     url: '/mentor/accept/:token',
-    templateUrl: '/mentor/invitable/mentor_accept_invitation.html'
+    templateUrl: 'app/mentor/invitable/mentor_accept_invitation.html'
   })
 
   .state('studentAcceptInvitation', {
     url: '/student/accept/:token',
-    templateUrl: '/student/invitable/student_accept_invitation.html'
+    templateUrl: 'app/student/invitable/student_accept_invitation.html'
   });
+
+  $urlRouterProvider.otherwise('/');
+
 });
