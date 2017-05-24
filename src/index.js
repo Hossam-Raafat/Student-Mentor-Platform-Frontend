@@ -80,6 +80,14 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     }
   })
 
+  .state('managerDash', {
+    url: '/manager/dash',
+    templateUrl: 'app/manager/dashboard/manager_dash.html',
+    resolve: {
+      resolvedUser: CheckForAuthenticatedUser
+    }
+  })
+
   .state('mentorAcceptInvitation', {
     url: '/mentor/accept/:token',
     templateUrl: 'app/mentor/invitable/mentor_accept_invitation.html'
