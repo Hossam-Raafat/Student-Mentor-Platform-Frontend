@@ -12,7 +12,7 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     }, function (_error) {
       $state.go('student');
     });
-  } 
+  }
 
   $authProvider.configure([{
     mentor: {
@@ -50,7 +50,8 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
       passwordUpdatePath: '/manager/auth/password',
       tokenValidationPath: '/manager/auth/validate_token'
     }
-  }]);
+  }]
+);
 
   $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
   // rid of the '/#!/' in the url.
@@ -98,3 +99,38 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
   $urlRouterProvider.otherwise('/');
 
 });
+
+// angular.module('askMak').run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
+//     $rootScope.$on('$routeChangeStart', function (event) {
+//
+//         if (!Auth.isLoggedIn()) {
+//             console.log('DENY');
+//             event.preventDefault();
+//             $location.path('/login');
+//         }
+//         else {
+//             console.log('ALLOW');
+//             $location.path('/');
+//         }
+//     });
+// }]);
+
+// angular.module('askMak').controller('mainController', ['$scope', 'AuthService', '$location', function ($scope, AuthService, $location) {
+//
+// // $scope.$watch(Auth.isLoggedIn, function (value, oldValue) {
+// //
+// //   if(!value && oldValue) {
+// //     console.log("Disconnect");
+// //     $location.path('/login');
+// //   }
+// //
+// //   if(value) {
+// //     console.log("Connect");
+// //     //Do something when the user is connected
+// //   }
+// //
+// // }, true);
+// console.log("over here");
+// console.log(AuthService.authenticate_student());
+//
+// }]);
