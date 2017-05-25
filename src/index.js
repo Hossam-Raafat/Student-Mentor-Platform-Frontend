@@ -7,7 +7,7 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
       if (user.configName === 'manager') {
         return user;
       } else {
-        $state.go('student');
+       $state.go('student');
       }
     }, function (_error) {
       $state.go('student');
@@ -60,6 +60,11 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     .state('student', {
       url: '/',
       templateUrl: 'app/student/auth/student_auth.html'
+    })
+
+    .state('studentDash', {
+      url: '/student/dash',
+      templateUrl: 'app/student/dash/student_dash.html'
     })
 
   .state('manager', {
