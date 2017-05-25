@@ -20,16 +20,6 @@ angular.module('askMak').factory('AuthService', function($http, $auth, $state, $
         $state.go('student');
       });
     }
-    // login
-
-
-    // setUser : function(aUser){
-    //   user = aUser;
-    // },
-    // isLoggedIn : function(){
-    //   return(user)? user : false;
-    // }
-
   }
 
 });

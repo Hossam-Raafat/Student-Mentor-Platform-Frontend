@@ -1,7 +1,7 @@
 angular.module('askMak').controller('mainController', function($scope, $auth, $http, AuthService) {
 
   // listening to the student login broadcast which is triggered from the auth service
-  $scope.$on('studentLoggedIn', function(){
+  $scope.$on('studentLoggedIn', function (){
     $scope.student_logged_in = true;
   });
 
