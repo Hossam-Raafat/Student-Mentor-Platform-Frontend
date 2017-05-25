@@ -20,7 +20,7 @@
   <body ng-app="askMak">
     <div ng-controller="mainController" class="">
       <nav>
-        <button type="button" ng-click="signOutUser()" id="logout" name="button">Logout</button>
+        <button ng-if="student_logged_in" type="button" ng-click="signOutUser()" id="logout" name="button">Logout</button>
       </nav>
     </div>
     <h1>AlMakinah Mentorship Services</h1>
