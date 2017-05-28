@@ -6,8 +6,9 @@ angular.module('askMak').controller('studentAuthController', function ($scope, $
     })
       .then(function (resp) {
         console.log(resp);
-        AuthService.login(resp);
-        $state.go('studentDash');
+        AuthService.loginStudent(resp);
+        $state.go('studentLayout.studentDash');
+
       })
       .catch(function (resp) {
         console.log(resp);
