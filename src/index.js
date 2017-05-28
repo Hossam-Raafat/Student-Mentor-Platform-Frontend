@@ -76,16 +76,35 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
       templateUrl: 'app/student/dash/student_dash.html'
     });
 
+    $stateProvider
+    .state('mentorLayout', {
+      url: '/mentor',
+      templateUrl: 'app/mentor/layout/mentor_layout.html',
+      abstract: true
+    })
+    .state('mentorLayout.mentor', {
+      url: '/auth',
+      templateUrl: 'app/mentor/auth/mentor_auth.html'
+    })
+    .state('mentorLayout.mentorAcceptInvitation', {
+      url: '/accept/:token',
+      templateUrl: 'app/mentor/invitable/mentor_accept_invitation.html'
+    })
+    .state('mentorLayout.mentorDash', {
+      url: '/dash',
+      templateUrl: 'app/mentor/dashboard/mentor_dash.html',
+      resolve: {
+        resolvedUser: CheckForAuthenticatedUser
+      }
+    });
+
+
   $stateProvider
     .state('managerLayout', {
       url: '/manager',
       templateUrl: 'app/manager/layout/manager_layout.html',
       abstract: true
     })
-    // .state('managerLayout.homepage', {
-    //   url: '',
-    //   templateUrl: 'app/manager/auth/manager_auth.html'
-    // })
   .state('managerLayout.manager', {
     url: '/auth',
     templateUrl: 'app/manager/auth/manager_auth.html'
@@ -105,22 +124,7 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     }
   });
 
-  $stateProvider
-  .state('mentorLayout', {
-    url: '/mentor',
-    templateUrl: 'app/mentor/layout/mentor_layout.html',
-    abstract: true
-  })
 
-  .state('mentorLayout.mentor', {
-    url: '/auth',
-    templateUrl: 'app/mentor/auth/mentor_auth.html'
-  })
-
-  .state('mentorLayout.mentorAcceptInvitation', {
-    url: '/accept/:token',
-    templateUrl: 'app/mentor/invitable/mentor_accept_invitation.html'
-  });
   $urlRouterProvider.otherwise('/');
 });
 

@@ -9,6 +9,7 @@ angular.module('askMak').factory('AuthService', function ($http, $auth, $state, 
     loginMentor: function () {
       // tell the world that I'm logged in
       $rootScope.$broadcast('mentorLoggedIn');
+      $state.go('mentorLayout.mentorDash')
     },
     loginManager: function () {
       // tell the world that I'm logged in

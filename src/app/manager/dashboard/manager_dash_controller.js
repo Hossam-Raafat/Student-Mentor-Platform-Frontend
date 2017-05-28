@@ -24,5 +24,4 @@ angular.module('askMak').controller('managerDashController', function ($scope, $
         console.log(err)
       }
     );
-
 });
