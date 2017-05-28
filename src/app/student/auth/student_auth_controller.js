@@ -1,4 +1,5 @@
-angular.module('askMak').controller('studentAuthController', function ($scope, $auth, AuthService) {
+angular.module('askMak').controller('studentAuthController', function ($scope, $auth, $state, AuthService) {
+
   $scope.login = function () {
     $auth.submitLogin($scope.loginForm, {
       config: 'student' // dont forget to add {config: 'student'}
@@ -6,6 +7,8 @@ angular.module('askMak').controller('studentAuthController', function ($scope, $
       .then(function (resp) {
         console.log(resp);
         AuthService.loginStudent(resp);
+        $state.go('studentLayout.studentDash');
+
       })
       .catch(function (resp) {
         console.log(resp);

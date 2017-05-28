@@ -7,7 +7,7 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
       if (user.configName === 'manager') {
         return user;
       } else {
-        $state.go('student');
+       $state.go('student');
       }
     }, function (_error) {
       $state.go('student');
@@ -70,6 +70,10 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     .state('studentLayout.studentAcceptInvitation', {
       url: '/accept/:token',
       templateUrl: 'app/student/invitable/student_accept_invitation.html'
+    })
+    .state('studentLayout.studentDash', {
+      url: '/dash',
+      templateUrl: 'app/student/dash/student_dash.html'
     });
 
   $stateProvider
@@ -92,17 +96,27 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     resolve: {
       resolvedUser: CheckForAuthenticatedUser
     }
+  })
+  .state('managerLayout.managerDash', {
+    url: '/dash',
+    templateUrl: 'app/manager/dashboard/manager_dash.html',
+    resolve: {
+      resolvedUser: CheckForAuthenticatedUser
+    }
   });
+
   $stateProvider
   .state('mentorLayout', {
     url: '/mentor',
     templateUrl: 'app/mentor/layout/mentor_layout.html',
     abstract: true
   })
+
   .state('mentorLayout.mentor', {
     url: '/auth',
     templateUrl: 'app/mentor/auth/mentor_auth.html'
   })
+
   .state('mentorLayout.mentorAcceptInvitation', {
     url: '/accept/:token',
     templateUrl: 'app/mentor/invitable/mentor_accept_invitation.html'
