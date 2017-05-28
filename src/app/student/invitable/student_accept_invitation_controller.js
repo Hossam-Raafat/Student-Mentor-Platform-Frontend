@@ -1,4 +1,4 @@
-angular.module('askMak').controller('studentAcceptCtrl', function($scope, $auth, $http, $stateParams) {
+angular.module('askMak').controller('studentAcceptCtrl', function ($scope, $auth, $http, $stateParams) {
 
   $scope.accept = function () {
     var x = {
@@ -7,7 +7,7 @@ angular.module('askMak').controller('studentAcceptCtrl', function($scope, $auth,
       invitation_token: $stateParams.token // to send the token with invitee's new password
     };
     $http.put('http://localhost:3000/student/auth/invitation', {
-    student: x
+      student: x
     }).then(
       // we used 'put' because the student was already generated, but
       // we still need his acceptance to the invitation
