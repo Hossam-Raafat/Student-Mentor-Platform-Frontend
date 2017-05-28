@@ -73,6 +73,38 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     templateUrl: 'app/manager/auth/manager_auth.html'
   })
 
+  .state('managerDash', {
+    url: '/manager/dash',
+    templateUrl: 'app/manager/dashboard/manager_dash.html',
+    resolve: {
+      resolvedUser: CheckForAuthenticatedUser
+    }
+  })
+
+  .state('managerMentorsList', {
+    url: '/manager/dash/mentors',
+    templateUrl: 'app/manager/dashboard/mentors/manager_mentors.html',
+    resolve: {
+      resolvedUser: CheckForAuthenticatedUser
+    }
+  })
+
+  .state('managerMentorProfile', {
+    url: '/manager/dash/mentors/{id:[0-9]{1,8}}', // how to make it view the name of the mentor?
+    templateUrl: 'app/manager/dashboard/mentors/mentorProfile/mentor_profile.html',
+    resolve: {
+      resolvedUser: CheckForAuthenticatedUser
+    }
+  })
+
+  .state('managerStudents', {
+    url: '/manager/dash/students',
+    templateUrl: 'app/manager/dashboard/students/manager_students.html',
+    resolve: {
+      resolvedUser: CheckForAuthenticatedUser
+    }
+  })
+
   .state('mentor', {
     url: '/mentor/auth',
     templateUrl: 'app/mentor/auth/mentor_auth.html'
@@ -86,13 +118,6 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
     }
   })
 
-  .state('managerDash', {
-    url: '/manager/dash',
-    templateUrl: 'app/manager/dashboard/manager_dash.html',
-    resolve: {
-      resolvedUser: CheckForAuthenticatedUser
-    }
-  })
 
   .state('mentorAcceptInvitation', {
     url: '/mentor/accept/:token',

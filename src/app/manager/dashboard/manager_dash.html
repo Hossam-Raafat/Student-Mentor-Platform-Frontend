@@ -1,20 +1,40 @@
 <div ng-controller="managerDashController">
   <h2>Manager Dahsboard</h2>
+  <h3>Number of unclaimed questions</h3>
+  <p>{{unclaimedCount}}</p>
+  <h3>Number of resolved questions</h3>
+  <p>{{resolvedCount}}</p>
+  <a ui-sref="managerMentorsList">Mentors</a>
+  <a ui-sref="managerStudents">Students</a>
+
+
+<!-- 
   <h3>resolved qustions</h3>
   <ul>
      <li ng-repeat="question in resolvedQuestions">
        <span>{{question.title}}</span>
+       <button ng-click='deleteItem(question)'>delete</button>
        <p>{{question.body}}</p>
      </li>
    </ul>
+
+   <h3>unclaimed qustions</h3>
+   <ul>
+      <li ng-repeat="question in unclaimedQuestions">
+        <span>{{question.title}}</span>
+        <button ng-click='deleteQuestion(question)'>delete</button>
+        <p>{{question.body}}</p>
+      </li>
+    </ul>
 
 
    <h3>all qustions</h3>
    <ul>
       <li ng-repeat="question in allQuestions">
         <span>{{question.title}}</span>
+        <button ng-click='deleteItem(question)'>delete</button>
         <p>{{question.body}}</p>
       </li>
-    </ul>
+    </ul> -->
     
 </div>
