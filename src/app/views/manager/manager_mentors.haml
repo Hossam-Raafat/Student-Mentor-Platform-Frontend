@@ -1,0 +1,9 @@
+%div{"ng-controller" => "managerMentors"}
+  %h1 Mentors' List
+  %ul
+    %li{"ng-repeat" => "mentor in allMentors"}
+      %p {{mentor.email}}
+      %p{"ng-if" => "mentor.status == true"} available
+      %p{"ng-if" => "mentor.status == false"} busy
+      %a{"ui-sref" => "managerMentorProfile({id:mentor.id})"} Profile
+%a{"ui-sref" => "managerDash"} Dashboard

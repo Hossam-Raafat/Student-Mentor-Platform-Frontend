@@ -1,0 +1,5 @@
+%div{"ng-controller" => "mentorLogController"}
+  %nav
+    %button#logout{:name => "button", "ng-click" => "signOutUser()", "ng-if" => "mentor_logged_in", :type => "button"} Logout
+  in mentor layout
+  %ui-view
