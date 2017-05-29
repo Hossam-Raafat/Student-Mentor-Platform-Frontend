@@ -6,7 +6,7 @@
   %p {{resolvedCount}}
   %a{"ui-sref" => "managerMentorsList"} Mentors
   %a{"ui-sref" => "managerStudents"} Students
-  /
+
     <h3>resolved qustions</h3>
     <ul>
     <li ng-repeat="question in resolvedQuestions">
@@ -15,7 +15,7 @@
     <p>{{question.body}}</p>
     </li>
     </ul>
-    
+
     <h3>unclaimed qustions</h3>
     <ul>
     <li ng-repeat="question in unclaimedQuestions">
@@ -24,8 +24,8 @@
     <p>{{question.body}}</p>
     </li>
     </ul>
-    
-    
+
+
     <h3>all qustions</h3>
     <ul>
     <li ng-repeat="question in allQuestions">
