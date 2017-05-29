@@ -23,7 +23,8 @@ angular.module('askMak').controller('managerInviteCtrl', function($scope, $auth,
 
         $scope.inviteStudent = function(){
           var x ={
-            email: $scope.studentEmail
+            email: $scope.studentEmail,
+            program: $scope.studentProgram
           }
           $http.post('http://localhost:3000/student/auth/invitation',{student: x}).then(
             function(success){

@@ -1,9 +1,10 @@
-angular.module('askMak').controller('studentAcceptCtrl', function($scope, $auth, $http, $stateParams) {
+angular.module('askMak').controller('studentAcceptCtrl', function($scope, $http, $stateParams, $state) {
 
   $scope.accept = function () {
     var x = {
       password: $scope.acceptForm.password,
       password_confirmation: $scope.acceptForm.passwordConfirmation,
+      name: $scope.acceptForm.name,
       invitation_token: $stateParams.token // to send the token with invitee's new password
     };
     $http.put('http://localhost:3000/student/auth/invitation', {
@@ -16,6 +17,7 @@ angular.module('askMak').controller('studentAcceptCtrl', function($scope, $auth,
       // invitation routes, you should find '/auth/invitation'
       function (success) {
         console.log(success);
+        $state.go('student');
         // here we will need to redirect the new student to his dashboard/homepage
       },
       function (error) {

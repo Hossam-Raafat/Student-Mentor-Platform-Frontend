@@ -1,7 +1,57 @@
 <div ng-controller="studentDashController">
-	<ol>
-		<li ng-repeat='question in questionData'>
-			<p>{{question.title}}</p>
-		</li>
-	</ol>	
+	<h1>Welcome {{ currentUser.email }}</h1>
+	<h2>All answered questions ({{resolvedQuestions.length}})</h2>
+	<input type="text" placeholder="filter by language" ng-model="search.language">
+	<table>
+		<thead>
+			<tr>
+				<th colspan="3">questions</th>
+				<th rowspan="2">Answers</th>
+			</tr>
+			<tr>
+				<th>title</th>
+				<th>body</th>
+				<th>language</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat='quest in resolvedQuestions | filter: search'>
+				<td>{{quest.title}}</td>
+				<td>{{quest.body}}</td>
+				<td>{{quest.language}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<h2>Your questions</h2>
+	<table>
+		<thead>
+			<tr>
+				<th colspan="5">questions</th>
+				<th rowspan="2">Answers</th>
+			</tr>
+			<tr>
+				<th>title</th>
+				<th>body</th>
+				<th>language</th>
+				<th>delete</th>
+				<th>edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat='question in currentStudentQuestions'>
+				<td>{{question.title}}</td>
+				<td>{{question.body}}</td>
+				<td>{{question.language}}</td>
+				<td>
+					<form ng-submit="deleteQuestion(question)">
+						<button>Delete</button>
+					</form>
+				</td>
+				<td>
+					<a ui-sref="studentEditQuestion({id:question.id})">Edit</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<a ui-sref="studentRequest">Ask a question</a>
 </div>

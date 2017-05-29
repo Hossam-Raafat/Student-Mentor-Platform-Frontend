@@ -1,4 +1,4 @@
-angular.module('askMak', ['ng-token-auth', 'ui.router'])
+angular.module('askMak', ['ng-token-auth', 'ui.router', 'toaster'])
 .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
   function CheckForAuthenticatedUser($auth, $state) {
     return $auth.validateUser().then(function (user) {
@@ -6,12 +6,36 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
       // the variable `resolvedUser`
       if (user.configName === 'manager') {
         return user;
-      } else {
-       $state.go('student');
       }
-    }, function (_error) {
+      $state.go('student');
+    }, function () {
       $state.go('student');
     });
+  }
+
+  function CheckForAuthenticatedStudent($auth, $state) {
+    return $auth.validateUser().then(function (user) {
+      // if resolved successfully return a user object that will set
+      // the variable `resolvedUser`
+      if (user.configName === 'student') {
+        return user;
+      }
+      $state.go('student');
+    }, function () {
+      $state.go('student');
+    });
+  }
+
+  function config($logProvider, toastrConfig) {
+    // Enable log
+    $logProvider.debugEnabled(true);
+
+    // Set options third-party lib
+    toastrConfig.allowHtml = true;
+    toastrConfig.timeOut = 3000;
+    toastrConfig.positionClass = 'toast-top-right';
+    toastrConfig.preventDuplicates = true;
+    toastrConfig.progressBar = true;
   }
 
   $authProvider.configure([{
@@ -65,7 +89,25 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
 
     .state('studentDash', {
       url: '/student/dash',
-      templateUrl: 'app/student/dash/student_dash.html'
+      templateUrl: 'app/student/dash/student_dash.html',
+      resolve: {
+        resolvedUser: CheckForAuthenticatedStudent
+      }
+    })
+
+    .state('studentRequest', {
+      url: '/student/request',
+      templateUrl: 'app/student/dash/student_request.html',
+      resolve: {
+        resolvedUser: CheckForAuthenticatedStudent
+      }
+    })
+    .state('studentEditQuestion', {
+      url: '/student/edit/question/{id:[0-9]{1,8}}',
+      templateUrl: 'app/student/dash/student_edit.html',
+      resolve: {
+        resolvedUser: CheckForAuthenticatedStudent
+      }
     })
 
   .state('manager', {
@@ -107,7 +149,6 @@ angular.module('askMak', ['ng-token-auth', 'ui.router'])
   $urlRouterProvider.otherwise('/');
 
 });
-
 // angular.module('askMak').run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
 //     $rootScope.$on('$routeChangeStart', function (event) {
 //
