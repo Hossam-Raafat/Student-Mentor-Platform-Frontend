@@ -1,0 +1,7 @@
+%div{"ng-controller" => "managerInviteCtrl"}
+  %form{:method => "post", "ng-submit" => "inviteMentor()"}
+    %input{"ng-model" => "mentorEmail", :placeholder => "mentor email", :type => "email"}/
+    %button{:name => "button", :type => "submit"} Invite mentor
+  %form{:method => "post", "ng-submit" => "inviteStudent()"}
+    %input{"ng-model" => "studentEmail", :placeholder => "student email", :type => "email"}/
+    %button{:name => "button", :type => "submit"} Invite student
