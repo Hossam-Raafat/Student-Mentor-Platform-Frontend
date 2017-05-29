@@ -2,7 +2,9 @@
   <ul>
      <li ng-repeat="question in mentorResolved">
      <p><span>Question: </span>{{$index + 1}}</p>
+     <p>Status: <span ng-if="question.response.status == true"> Answered</span><span ng-if="question.response.status == false"> Not Answered</span></p>
      <p><span>Submited </span><time-ago from-time='{{ question.created_at}}' format='MM/dd/yyyy'></time-ago></p>
+     <p>Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later</p>
      
      <p><span>Title: </span>{{question.title}}</p>
      <p><span>Body: </span>{{question.body}}</p>

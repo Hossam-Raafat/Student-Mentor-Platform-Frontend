@@ -1,4 +1,4 @@
-angular.module('askMak', ['ng-token-auth', 'ui.router', 'hm.readmore','yaru22.angular-timeago'])
+angular.module('askMak', ['ng-token-auth', 'ui.router', 'hm.readmore','yaru22.angular-timeago','angularMoment'])
 .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
   function CheckForAuthenticatedUser($auth, $state) {
     return $auth.validateUser().then(function (user) {
