@@ -2,9 +2,10 @@
   <ul>
      <li ng-repeat="question in mentorResolved">
      <p><span>Question: </span>{{$index + 1}}</p>
-     <p><span>Submited at: </span>{{question.created_at| date:'short'}}</p>
-      <p><span>Title: </span>{{question.title}}</p>
-      <p><span>Body: </span>{{question.body}}</p>
+     <p><span>Submited </span><time-ago from-time='{{ question.created_at}}' format='MM/dd/yyyy'></time-ago></p>
+     
+     <p><span>Title: </span>{{question.title}}</p>
+     <p><span>Body: </span>{{question.body}}</p>
       
       
       <div hm-read-more
