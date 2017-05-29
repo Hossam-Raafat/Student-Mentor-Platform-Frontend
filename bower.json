@@ -5,11 +5,11 @@
     "angular": "^1.6.2",
     "ng-token-auth": "^0.0.30",
     "angular-ui-router": "^1.0.3",
-    "angular-read-more": "^1.0.6"
+    "angular-read-more": "^1.0.6",
+    "angular-timeago": "^0.4.5"
   },
   "devDependencies": {
     "angular-mocks": "^1.6.2"
-
   },
   "resolutions": {
     "angular": "1.6.4"
