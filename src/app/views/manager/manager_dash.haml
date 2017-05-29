@@ -1,0 +1,12 @@
+%div{"ng-controller" => "managerDashController"}
+  %h2 Manager Dahsboard
+  %h3 resolved qustions
+  %ul
+    %li{"ng-repeat" => "question in resolvedQuestions"}
+      %span {{question.title}}
+      %p {{question.body}}
+  %h3 all qustions
+  %ul
+    %li{"ng-repeat" => "question in allQuestions"}
+      %span {{question.title}}
+      %p {{question.body}}
