@@ -1,0 +1,13 @@
+%h1 Edit your question here
+%div{"ng-controller" => "studentEditController"}
+  %form{"ng-submit" => "editQuestion()"}
+    %p
+      %label{:for => "title"} Title
+      %input#title{"ng-model" => "question.title", :required => "", :type => "text"}/
+    %p
+      %label{:for => "body"} Body
+      %input#body{"ng-model" => "question.body", :required => "", :type => "text"}/
+    %p
+      %label{:for => "language"} language
+      %input#language{"ng-model" => "question.language", :required => "", :type => "text"}/
+    %button Edit

@@ -23,7 +23,8 @@ angular.module('alMakinah').controller('managerInviteCtrl', function($scope, $au
 
         $scope.inviteStudent = function(){
           var x ={
-            email: $scope.studentEmail
+            email: $scope.studentEmail,
+            program: $scope.studentProgram
           }
           $http.post('http://localhost:3000/student/auth/invitation',{student: x}).then(
             function(success){

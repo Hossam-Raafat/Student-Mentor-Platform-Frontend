@@ -4,18 +4,30 @@
     'ngInject';
 
   function CheckForAuthenticatedUser($auth, $state) {
-      return $auth.validateUser().then(function (user) {
-        // if resolved successfully return a user object that will set
-        // the variable `resolvedUser`
-        if (user.configName === 'manager') {
-          return user;
-        } else {
-         $state.go('student');
-        }
-      }, function (_error) {
-        $state.go('student');
-      });
-    }
+    return $auth.validateUser().then(function (user) {
+      // if resolved successfully return a user object that will set
+      // the variable `resolvedUser`
+      if (user.configName === 'manager') {
+        return user;
+      }
+      $state.go('student');
+    }, function () {
+      $state.go('student');
+    });
+  }
+
+  function CheckForAuthenticatedStudent($auth, $state) {
+    return $auth.validateUser().then(function (user) {
+      // if resolved successfully return a user object that will set
+      // the variable `resolvedUser`
+      if (user.configName === 'student') {
+        return user;
+      }
+      $state.go('student');
+    }, function () {
+      $state.go('student');
+    });
+  }
 
 
     $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
@@ -46,8 +58,22 @@
         templateUrl: 'app/views/student/student_accept_invitation.html'
       })
       .state('studentLayout.studentDash', {
-        url: '/dash',
+        url: 'dash',
         templateUrl: 'app/views/student/student_dash.html'
+      })
+      .state('studentLayout.studentRequest', {
+        url: '/request',
+        templateUrl: 'app/views/student/student_request.html',
+        resolve: {
+          resolvedUser: CheckForAuthenticatedStudent
+        }
+      })
+      .state('studentLayout.studentEditQuestion', {
+        url: 'edit/question/{id:[0-9]{1,8}}',
+        templateUrl: 'app/views/student/student_edit.html',
+        resolve: {
+          resolvedUser: CheckForAuthenticatedStudent
+        }
       })
       .state('managerLayout', {
         url: '/manager',

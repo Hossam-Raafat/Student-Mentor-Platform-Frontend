@@ -1,0 +1,13 @@
+%h1 Ask your question here
+%div{"ng-controller" => "studentRequestController"}
+  %form{"ng-submit" => "addQuestion()"}
+    %p
+      %label{:for => "title"} Title
+      %input#title{"ng-model" => "titleForm", :required => "", :type => "text"}/
+    %p
+      %label{:for => "body"} Body
+      %input#body{"ng-model" => "bodyForm", :required => "", :type => "text"}/
+    %p
+      %label{:for => "language"} language
+      %input#language{"ng-model" => "languageForm", :required => "", :type => "text"}/
+    %button Submit

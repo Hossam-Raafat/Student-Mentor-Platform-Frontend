@@ -18,17 +18,18 @@ angular.module('alMakinah').factory('AuthService', function ($http, $auth, $stat
     // authenticate_student // checks if student is logged in
     // authenticate_student // checks if student is logged in
     logged_in_user: function (callback) {
-    $auth.validateUser().then(function (user) {
-      // if resolved successfully return a user object that will set
-      // the variable `resolvedUser`
-    if (user.configName === 'student' || user.configName === 'mentor' || user.configName === 'manager'){
-      callback(user);
-    } else {
-      callback(false);
-    }
-    }, function (_error) {
-      $state.go('student');
-    });
+      return $auth.validateUser();
+      // .then(function (user) {
+      //   // if resolved successfully return a user object that will set
+      //   // the variable `resolvedUser`
+      // if (user.configName === 'student' || user.configName === 'mentor' || user.configName === 'manager'){
+      //   callback(user);
+      // } else {
+      //   callback(false);
+      // }
+      // }, function (_error) {
+      //   $state.go('student');
+      // });
     }
   }
 });

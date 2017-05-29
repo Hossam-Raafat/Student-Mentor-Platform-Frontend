@@ -13,7 +13,7 @@
         'ui.router',
         'hm.readmore',
         'yaru22.angular-timeago',
-        'angularMoment'
+        'angularMoment',
     ]);
 
 }).call(this);

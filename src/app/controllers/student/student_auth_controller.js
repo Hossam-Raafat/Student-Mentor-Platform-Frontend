@@ -1,4 +1,5 @@
-angular.module('alMakinah').controller('studentAuthController', function ($scope, $auth, $state, AuthService) {
+angular.module('alMakinah').controller('studentAuthController', function ($scope, $auth, $state, $window, AuthService) {
+
 
   $scope.login = function () {
     $auth.submitLogin($scope.loginForm, {
@@ -12,6 +13,8 @@ angular.module('alMakinah').controller('studentAuthController', function ($scope
       })
       .catch(function (resp) {
         console.log(resp);
+        $window.alert('Wrong Credintials!');
+
       });
   };
 });
