@@ -1,0 +1,41 @@
+%div{"ng-controller" => "studentDashController"}
+  %h1 Welcome {{ currentUser.email }}
+  %h2 All answered questions ({{resolvedQuestions.length}})
+  %input{"ng-model" => "search.language", :placeholder => "filter by language", :type => "text"}/
+  %table
+    %thead
+      %tr
+        %th{:colspan => "3"} questions
+        %th{:rowspan => "2"} Answers
+      %tr
+        %th title
+        %th body
+        %th language
+    %tbody
+      %tr{"ng-repeat" => "quest in resolvedQuestions | filter: search"}
+        %td {{quest.title}}
+        %td {{quest.body}}
+        %td {{quest.language}}
+  %h2 Your questions
+  %table
+    %thead
+      %tr
+        %th{:colspan => "5"} questions
+        %th{:rowspan => "2"} Answers
+      %tr
+        %th title
+        %th body
+        %th language
+        %th delete
+        %th edit
+    %tbody
+      %tr{"ng-repeat" => "question in currentStudentQuestions"}
+        %td {{question.title}}
+        %td {{question.body}}
+        %td {{question.language}}
+        %td
+          %form{"ng-submit" => "deleteQuestion(question)"}
+            %button Delete
+        %td
+          %a{"ui-sref" => "studentLayout.studentEditQuestion({id:question.id})"} Edit
+  %a{"ui-sref" => "studentLayout.studentRequest"} Ask a question
