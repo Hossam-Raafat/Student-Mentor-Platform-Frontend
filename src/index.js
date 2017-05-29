@@ -1,4 +1,4 @@
-angular.module('askMak', ['ng-token-auth', 'ui.router'])
+angular.module('askMak', ['ng-token-auth', 'ui.router', 'hm.readmore'])
 .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
   function CheckForAuthenticatedUser($auth, $state) {
     return $auth.validateUser().then(function (user) {
