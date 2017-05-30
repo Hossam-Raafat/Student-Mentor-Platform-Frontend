@@ -5,5 +5,5 @@
       %p {{mentor.email}}
       %p{"ng-if" => "mentor.status == true"} available
       %p{"ng-if" => "mentor.status == false"} busy
-      %a{"ui-sref" => "managerMentorProfile({id:mentor.id})"} Profile
-%a{"ui-sref" => "managerDash"} Dashboard
+      %a{"ui-sref" => "managerLayout.managerMentorProfile({id:mentor.id})"} Profile
+%a{"ui-sref" => "managerLayout.managerDash"} Dashboard
