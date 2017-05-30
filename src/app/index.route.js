@@ -54,7 +54,7 @@
         templateUrl: 'app/views/student/student_auth.html'
       })
       .state('studentLayout.studentAcceptInvitation', {
-        url: '/accept/:token',
+        url: 'accept/:token',
         templateUrl: 'app/views/student/student_accept_invitation.html'
       })
       .state('studentLayout.studentDash', {
@@ -62,7 +62,7 @@
         templateUrl: 'app/views/student/student_dash.html'
       })
       .state('studentLayout.studentRequest', {
-        url: '/request',
+        url: 'request',
         templateUrl: 'app/views/student/student_request.html',
         resolve: {
           resolvedUser: CheckForAuthenticatedStudent

@@ -1,8 +1,8 @@
 %div{"ng-controller" => "mentorDashController"}
   %h1 Welcome {{user.email}}
   %h2 All unclaimed questions ({{unclaimedQuestions.length}})
-
+  %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"} {{mentor.status}}
   %h3 unclaimed questions list
     %ul
-      %li {'ng-repeat' => "question in unclaimedQuestions"} {{question.title}}
+      %li{'ng-repeat' => "question in unclaimedQuestions"} {{question.title}}
       %li {{question.body}}
