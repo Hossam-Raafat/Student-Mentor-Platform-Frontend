@@ -14,6 +14,13 @@
 
   %h3 Questions I claimed
     %ul
-      %li{'ng-repeat' => "question in Questions"} {{question.title}}
+      %li{'ng-repeat' => "question in claimedQuestions"}
+        %p {{question.student_id}}
+        %p {{question.title}}
+        %p {{question.body}}
+  %h3 All Questions
+    %ul
+      %li{'ng-repeat' => "question in questions"}
+        %p {{question.student_id}}
         %p {{question.title}}
         %p {{question.body}}

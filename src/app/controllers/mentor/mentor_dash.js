@@ -1,6 +1,7 @@
 angular.module('alMakinah').controller('mentorDashController', function ($scope, $http, AuthService, $stateParams) {
   $scope.unclaimedQuestions = [];
   $scope.claimedQuestions = [];
+  $scope.questions = [];
   // create button that will make update request (change status of question ) and delete question from unclaimedQuestions array in frontend
 
   AuthService.logged_in_user().then(function(user){
@@ -31,6 +32,16 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
         console.log(err);
       })
     }
+    $scope.questions = function() {
+      $http.get('http://localhost:3000/mentor/questions.json')
+      .then(function(success) {
+        console.log(success.data);
+        $scope.questions = success.data
+        },
+        function(err) {
+          console.log(err);
+        })
+      }
   $scope.editStatus = function(status, id) {
     $http.put('http://localhost:3000/mentor/mentors/' + id + '.json', {mentor: {status: status}})
     .then(function(success) {
