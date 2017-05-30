@@ -1,8 +1,19 @@
 %div{"ng-controller" => "mentorDashController"}
   %h1 Welcome {{user.email}}
   %h2 All unclaimed questions ({{unclaimedQuestions.length}})
-  %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"} {{mentor.status}}
+  %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"}
+  %span{"ng-if" => "mentor.status == true"} uncheck if you are busy
+  %span{"ng-if" => "mentor.status == false"} Check if you can answer a question now
+
   %h3 unclaimed questions list
     %ul
-      %li{'ng-repeat' => "question in unclaimedQuestions"} {{question.title}}
-      %li {{question.body}}
+      %li{'ng-repeat' => "question in unclaimedQuestions"}
+        %p {{question.title}}
+        %p {{question.body}}
+          %button{'ng-click'=> "claimQuestion(question)"} zorar
+
+  %h3 Questions I claimed
+    %ul
+      %li{'ng-repeat' => "question in Questions"} {{question.title}}
+        %p {{question.title}}
+        %p {{question.body}}
