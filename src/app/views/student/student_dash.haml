@@ -1,41 +1,61 @@
 %div{"ng-controller" => "studentDashController"}
-  %h1 Welcome {{ currentUser.email }}
+  %h1 Welcome {{ currentUser.name }}
   %h2 All answered questions ({{resolvedQuestions.length}})
-  %input{"ng-model" => "search.language", :placeholder => "filter by language", :type => "text"}/
+  %input{"ng-model" => "search.language", :placeholder => "filter by language", :type => "text"}
   %table
     %thead
       %tr
+        %th{:rowspan => "2"} Submit By
         %th{:colspan => "3"} questions
         %th{:rowspan => "2"} Answers
+        %th{:rowspan => "2"} by
+        %th{:rowspan => "2"} votes
       %tr
         %th title
         %th body
         %th language
     %tbody
       %tr{"ng-repeat" => "quest in resolvedQuestions | filter: search"}
+        %td {{quest.student.name}}
         %td {{quest.title}}
         %td {{quest.body}}
         %td {{quest.language}}
+        %td {{quest.response.answer}}
+        %td {{quest.mentor.name}}
+        %td {{quest.get_upvotes.length - quest.get_downvotes.length}}
+        / %td {{quest.votes_for.size}}
+        %td
+          %button{"ng-click" => "upVoteQuestion(quest)", :type => "submit"} Upvote
+          %button{"ng-click" => "downvoteVoteQuestion(quest)", :type => "submit"} Downvote  
   %h2 Your questions
   %table
     %thead
       %tr
-        %th{:colspan => "5"} questions
+        %th{:rowspan => "2"} Submit By
+        %th{:colspan => "6"} questions
         %th{:rowspan => "2"} Answers
+        %th{:rowspan => "2"} Answer By
       %tr
         %th title
         %th body
         %th language
+        %th answer
         %th delete
         %th edit
     %tbody
       %tr{"ng-repeat" => "question in currentStudentQuestions"}
+        %td {{question.student.name}}
         %td {{question.title}}
         %td {{question.body}}
         %td {{question.language}}
-        %td
+        %td{"ng-if" => "question.response.status == true"} {{question.response.answer}}
+        %td{"ng-if" => "question.response.status == true"} {{question.mentor.name}}
+        %td{"ng-if" => "question.response.status == false"} Not answered
+        %td{"ng-if" => "question.response.status == false"} {{question.mentor.name}}
+        %td{"ng-if" => "question.response.status == nil"} Not claimed yet
+        %td{"ng-if" => "question.response.status == nil"}
           %form{"ng-submit" => "deleteQuestion(question)"}
             %button Delete
-        %td
+        %td{"ng-if" => "question.response.status == nil"}
           %a{"ui-sref" => "studentLayout.studentEditQuestion({id:question.id})"} Edit
   %a{"ui-sref" => "studentLayout.studentRequest"} Ask a question
