@@ -6,7 +6,7 @@
     %i.glyphicon.glyphicon-align-justify
   / brand
   %a.navbar-brand.text-lt{:href => "#/"}
-    %img{:alt => ".", :src => "/assets/images/small-logo.png"}
+    %img{:alt => ".", :src => "/assets/images/Logo+Text+bg.png"}
     %span.hidden-folded.m-l-xs {{app.name}}
   / / brand
 / / navbar header
@@ -33,7 +33,7 @@
         .header-dropdown-panel.panel.panel-default
           .panel-heading
             %span.v-t-top.m-l-xs Notifications
-            %span.pull-right 
+            %span.pull-right
               %a{ "ng-click":"markNotificationsRead" }
                 Mark All as Read
           .list-group{ "ng-infinite-scroll-pagination":"", "ng-change":"getNotifications()", "ng-model": "notificationsPaginationInfo.page", "total-items": "notificationsPaginationInfo.totalItems", "reached-end-val":"notificationsPaginationInfo.reachedEnd", "per-page": "10", "infinite": "false", "stopOnPage": "2" }

@@ -1,33 +1,57 @@
-%div{"ng-controller" => "mentorDashController"}
-  %h1 Welcome {{user.email}}
-  %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"}
-  %span{"ng-if" => "mentor.status == true"} uncheck if you are busy
-  %span{"ng-if" => "mentor.status == false"} Check if you can answer a question now
+#dashboard-wrapper
+  menu
+  .app-aside.hidden-xs.bg-primary{"data-ng-include": " 'app/views/partials/_aside.html' "}
+    menu
+    content
+  .app-content{ "ng-class": "{ 'h-full': setHideFooter() }" }
+    %div{"ui-butterbar": ""}
 
-  %h4 unclaimed questions list ({{unclaimedQuestions.length}})
-  %ul
-    %li{'ng-repeat' => "question in unclaimedQuestions"}
-      %p title: {{question.title}}
-        %button{'ng-click'=> "claimQuestion(question)"} Claim Question
-      %p body: {{question.body}}
-      %p language: {{question.language}}
+    %div{"ng-controller" => "mentorDashController"}
+      %h1 Welcome {{user.name}}
+        %button.btn.m-b-xs.btn-sm.btn-primary.btn-addon
+          %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"}
+          %span{"ng-if" => "mentor.status == true"} uncheck if you are busy
+          %span{"ng-if" => "mentor.status == false"} Check if you can answer a question now
 
-  %h4 Questions I claimed ({{claimedQuestions.length}})
-  %ul
-    %li{'ng-repeat' => "question in claimedQuestions"}
-      %p title: {{question.title}}
-        %button{'ng-init'=> "showForm = false", 'ng-click'=> "showForm = !showForm"}   Answer Now
-        {{showForm}}
-        %form{"ng-show" => "showForm", "ng-submit" => "addResponse(answer, question.id)"}
-          %textarea{"ng-model" => "answer"}
-          %button{:type => "submit"} Submit
-      %p body: {{question.body}}
-      %p language: {{question.language}}
+      %h4 unclaimed questions list ({{unclaimedQuestions.length}})
+        .m-l-lg.panel.b-a{'ng-repeat' => "question in unclaimedQuestions"}
+          .panel-heading.pos-rlt.b-b.b-light
+            %span.arrow.left
+            %a{:href => ""} {{question.title}}
+            %span.text-muted.m-l-sm.pull-right
+              %i.fa.fa-clock-o
+              Just now
+          .panel-body
+            %div Language: {{question.language}}
+            %div Question: {{question.body}}
+            .m-t-sm
+              %a.btn.btn-default.btn-xs{:href => "", 'ng-click'=> "claimQuestion(question)"}
+                %i.fa.fa-mail-reply.text-muted
+                Claim Question
 
-  %h4 All Questions ({{questions.length}})
-  %button{'ng-click'=> "viewAll(question)"} View All
-  %ul
-    %li{'ng-repeat' => "question in questions"}
-      %p title: {{question.title}}
-      %p body: {{question.body}}
-      %p language: {{question.language}}
+        %h4 Questions I claimed ({{claimedQuestions.length}})
+          .m-l-lg.panel.b-a{'ng-repeat' => "question in claimedQuestions"}
+            .panel-heading.pos-rlt.b-b.b-light
+              %span.arrow.left
+              %a{:href => ""} {{question.title}}
+              %span.text-muted.m-l-sm.pull-right
+                %i.fa.fa-clock-o
+                Just now
+            .panel-body
+              %div Language: {{question.language}}
+              %div Question: {{question.body}}
+              .m-t-sm
+                %a.btn.btn-default.btn-xs{:href => "", 'ng-init'=> "showForm = false", 'ng-click'=> "showForm = !showForm"}
+                  %i.fa.fa-mail-reply.text-muted
+                  Answer Now
+                  %form{"ng-show" => "showForm", "ng-submit" => "addResponse(answer, question.id)"}
+                    %textarea{"ng-model" => "answer"}
+                    %button{:type => "submit"} Submit
+
+        %h4 All Questions ({{questions.length}})
+        %button{'ng-click'=> "viewAll(question)"} View All
+        %ul
+          %li{'ng-repeat' => "question in questions"}
+            %p title: {{question.title}}
+            %p body: {{question.body}}
+            %p language: {{question.language}}

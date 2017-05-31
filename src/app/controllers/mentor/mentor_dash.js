@@ -42,8 +42,31 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
         console.log(err);
       })
     }
-    $scope.viewAll = function () {
-      $http.get('http://localhost:3000/mentor/questions.json')
+    // $scope.unclaimQuestion = function (question) {
+    //   $http.post('http://localhost:3000/mentor/responses.json', {response: { question_id: question.id}})
+    //   .then(function(success) {
+    //     console.log(success);
+    //     var questionIndex = $scope.claimedQuestions.indexOf(question);
+    //     $scope.unclaimedQuestions.splice(questionIndex, 1);
+    //     $scope.claimedQuestion.push(question);
+    //     console.log($scope.claimedQuestions)
+    //     },
+    //     function(err) {
+    //       console.log(err);
+    //     })
+    //   }
+  $scope.viewAll = function () {
+    $http.get('http://localhost:3000/mentor/questions.json')
+      .then(function(success) {
+      console.log(success);
+      $scope.questions = success.data['resolved'];
+      },
+      function(err) {
+        console.log(err);
+      })
+    }
+    $scope.addResponse = function (answer, id) {
+      $http.post('http://localhost:3000/mentor/responses.json',{response: {status: true, answer: answer, question_id: id}})
         .then(function(success) {
         console.log(success);
         $scope.questions = success.data['resolved'];
@@ -52,18 +75,6 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
           console.log(err);
         })
       }
-
-      $scope.addResponse = function (answer, id) {
-        // change path
-        $http.post('http://localhost:3000/mentor/responses.json',{response: {status: true, answer: answer, question_id: id}})
-          .then(function(success) {
-          console.log(success);
-          $scope.questions = success.data['resolved'];
-          },
-          function(err) {
-            console.log(err);
-          })
-        }
     // $scope.questions = function() {
     //   }
   $scope.editStatus = function(status, id) {
