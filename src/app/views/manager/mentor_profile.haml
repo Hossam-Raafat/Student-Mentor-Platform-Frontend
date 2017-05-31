@@ -1,4 +1,4 @@
-%div{"ng-controller" => "managerMentorProfile"}
+%div.col-lg-12{"ng-controller" => "managerMentorProfile"}
   .panel{"ng-repeat" => "question in mentorResolved"}
     .wrapper-lg
       %h2.m-t-none
@@ -16,11 +16,11 @@
           %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
         by
         %i.icon-fire
-        %span {{question.student_id}}
-        %span Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later
+        %span {{question.student.name}}
+        %span , Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later.
         %p Status: 
           %span{"ng-if" => "question.response.status == true"} Answered
             %span With a rate of {{question.rate.star}}/5
-          %span{"ng-if" => "question.response.status == false"} Not Answered
+          %span{"ng-if" => "question.response.status == false"} Not Answered yet
         
   %a{"ui-sref" => "managerLayout.managerMentorsList"} Mentors    
