@@ -44,8 +44,8 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
         console.log(err);
       })
     }
-    $scope.questions = function() {
-      }
+    // $scope.questions = function() {
+    //   }
   $scope.editStatus = function(status, id) {
     $http.put('http://localhost:3000/mentor/mentors/' + id + '.json', {mentor: {status: status}})
     .then(function(success) {
