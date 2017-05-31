@@ -4,24 +4,30 @@
   %span{"ng-if" => "mentor.status == true"} uncheck if you are busy
   %span{"ng-if" => "mentor.status == false"} Check if you can answer a question now
 
-  %h3 unclaimed questions list ({{unclaimedQuestions.length}})
-    %ul
-      %li{'ng-repeat' => "question in unclaimedQuestions"}
-        %p title: {{question.title}}
-        %p body: {{question.body}}
-        %p language: {{question.language}}
-          %button{'ng-click'=> "claimQuestion(question)"} zorar
+  %h4 unclaimed questions list ({{unclaimedQuestions.length}})
+  %ul
+    %li{'ng-repeat' => "question in unclaimedQuestions"}
+      %p title: {{question.title}}
+        %button{'ng-click'=> "claimQuestion(question)"} Claim Question
+      %p body: {{question.body}}
+      %p language: {{question.language}}
 
-  %h3 Questions I claimed ({{claimedQuestions.length}})
-    %ul
-      %li{'ng-repeat' => "question in claimedQuestions"}
-        %p title: {{question.title}}
-        %p body: {{question.body}}
-        %p language: {{question.language}}
+  %h4 Questions I claimed ({{claimedQuestions.length}})
+  %ul
+    %li{'ng-repeat' => "question in claimedQuestions"}
+      %p title: {{question.title}}
+        %button{'ng-init'=> "showForm = false", 'ng-click'=> "showForm = !showForm"}   Answer Now
+        {{showForm}}
+        %form{"ng-show" => "showForm", "ng-submit" => "addResponse(answer, question.id)"}
+          %textarea{"ng-model" => "answer"}
+          %button{:type => "submit"} Submit
+      %p body: {{question.body}}
+      %p language: {{question.language}}
 
-  %h3 All Questions ({{questions.length}})
-    %ul
-      %li{'ng-repeat' => "question in questions"}
-        %p title: {{question.title}}
-        %p body: {{question.body}}
-        %p language: {{question.language}}
+  %h4 All Questions ({{questions.length}})
+  %button{'ng-click'=> "viewAll(question)"} View All
+  %ul
+    %li{'ng-repeat' => "question in questions"}
+      %p title: {{question.title}}
+      %p body: {{question.body}}
+      %p language: {{question.language}}

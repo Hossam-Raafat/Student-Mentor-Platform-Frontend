@@ -24,8 +24,6 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
     console.log(success.data['claimed']);
     $scope.unclaimedQuestions = success.data['unclaimed'];
     console.log(success.data['unclaimed']);
-    $scope.questions = success.data['resolved'];
-    console.log(success.data);
     },
     function(err) {
       console.log(err);
@@ -44,6 +42,28 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
         console.log(err);
       })
     }
+    $scope.viewAll = function () {
+      $http.get('http://localhost:3000/mentor/questions.json')
+        .then(function(success) {
+        console.log(success);
+        $scope.questions = success.data['resolved'];
+        },
+        function(err) {
+          console.log(err);
+        })
+      }
+
+      $scope.addResponse = function (answer, id) {
+        // change path
+        $http.post('http://localhost:3000/mentor/responses.json',{response: {status: true, answer: answer, question_id: id}})
+          .then(function(success) {
+          console.log(success);
+          $scope.questions = success.data['resolved'];
+          },
+          function(err) {
+            console.log(err);
+          })
+        }
     // $scope.questions = function() {
     //   }
   $scope.editStatus = function(status, id) {
