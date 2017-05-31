@@ -1,26 +1,27 @@
 %div{"ng-controller" => "mentorDashController"}
   %h1 Welcome {{user.email}}
-  %h2 All unclaimed questions ({{unclaimedQuestions.length}})
   %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"}
   %span{"ng-if" => "mentor.status == true"} uncheck if you are busy
   %span{"ng-if" => "mentor.status == false"} Check if you can answer a question now
 
-  %h3 unclaimed questions list
+  %h3 unclaimed questions list ({{unclaimedQuestions.length}})
     %ul
       %li{'ng-repeat' => "question in unclaimedQuestions"}
-        %p {{question.title}}
-        %p {{question.body}}
+        %p title: {{question.title}}
+        %p body: {{question.body}}
+        %p language: {{question.language}}
           %button{'ng-click'=> "claimQuestion(question)"} zorar
 
-  %h3 Questions I claimed
+  %h3 Questions I claimed ({{claimedQuestions.length}})
     %ul
       %li{'ng-repeat' => "question in claimedQuestions"}
-        %p {{question.student_id}}
-        %p {{question.title}}
-        %p {{question.body}}
-  %h3 All Questions
+        %p title: {{question.title}}
+        %p body: {{question.body}}
+        %p language: {{question.language}}
+
+  %h3 All Questions ({{questions.length}})
     %ul
       %li{'ng-repeat' => "question in questions"}
-        %p {{question.student_id}}
-        %p {{question.title}}
-        %p {{question.body}}
+        %p title: {{question.title}}
+        %p body: {{question.body}}
+        %p language: {{question.language}}

@@ -8,17 +8,29 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
     $scope.mentor = user;
   });
 
-  $http.get('http://localhost:3000/mentor/questions.json', { params: { filter: 'unclaimed'} } )
-  .then(
-      function(success) {
-        console.log(success);
-        $scope.unclaimedQuestions = success.data;
-        console.log($scope.unclaimedQuestions)
-      },
-      function(err) {
-        console.log(err);
-      }
-  )
+  // $http.get('http://localhost:3000/mentor/questions.json', { params: { filter: 'unclaimed'} } )
+  // .then(
+  //     function(success) {
+  //       $scope.unclaimedQuestions = success.data;
+  //     },
+  //     function(err) {
+  //       console.log(err);
+  //     }
+  // )
+
+  $http.get('http://localhost:3000/mentor/questions.json')
+  .then(function(success) {
+    $scope.claimedQuestions = success.data['claimed'];
+    console.log(success.data['claimed']);
+    $scope.unclaimedQuestions = success.data['unclaimed'];
+    console.log(success.data['unclaimed']);
+    $scope.questions = success.data['resolved'];
+    console.log(success.data);
+    },
+    function(err) {
+      console.log(err);
+    })
+
   $scope.claimQuestion = function (question) {
     $http.post('http://localhost:3000/mentor/responses.json', {response: { question_id: question.id}})
     .then(function(success) {
@@ -33,14 +45,6 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
       })
     }
     $scope.questions = function() {
-      $http.get('http://localhost:3000/mentor/questions.json')
-      .then(function(success) {
-        console.log(success.data);
-        $scope.questions = success.data
-        },
-        function(err) {
-          console.log(err);
-        })
       }
   $scope.editStatus = function(status, id) {
     $http.put('http://localhost:3000/mentor/mentors/' + id + '.json', {mentor: {status: status}})
