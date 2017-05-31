@@ -10,9 +10,9 @@
       if (user.configName === 'manager') {
         return user;
       }
-      $state.go('student');
+      $state.go('studentLayout.student');
     }, function () {
-      $state.go('student');
+      $state.go('studentLayout.student');
     });
   }
 
@@ -84,8 +84,8 @@
       //   url: '',
       //   templateUrl: 'app/manager/auth/manager_auth.html'
       // })
-    .state('managerLayout.manager', {
-      url: '/auth',
+    .state('manager', {
+      url: '/manager/auth',
       templateUrl: 'app/views/manager/manager_auth.html'
     })
     .state('managerLayout.managerInvite', {
