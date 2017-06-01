@@ -12,7 +12,7 @@ angular.module('alMakinah').controller('mentorLogController', function ($scope, 
      // handle success response
       $scope.mentor_logged_in = false;
       console.log(resp);
-      $state.go('mentorLayout.mentor');
+      $state.go('mentor');
     })
     .catch(function (resp) {
       // handle error response
