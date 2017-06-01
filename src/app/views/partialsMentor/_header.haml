@@ -1,0 +1,29 @@
+/ navbar header
+.navbar-header.bg-primary
+  %button.pull-right.visible-xs.dk{"data-target" => ".navbar-collapse", "ui-toggle-class" => "show"}
+    %i.glyphicon.glyphicon-cog
+  %button.pull-right.visible-xs{"data-target" => ".app-aside", "ui-scroll-to" => "app", "ui-toggle-class" => "off-screen"}
+    %i.glyphicon.glyphicon-align-justify
+  / brand
+  %a.navbar-brand.text-lt{:href => "#/"}
+    %img{:alt => ".", :src => "/assets/images/Logo+Text+bg.png"}
+    %span.hidden-folded.m-l-xs {{app.name}}
+
+  / / brand
+/ / navbar header
+/ navbar collapse
+.collapse.pos-rlt.navbar-collapse.box-shadow.bg-gray
+  %ul.nav.navbar-nav.navbar-right
+    %li.dropdown{:"uib-dropdown" => ""}
+      %a.dropdown-toggle.clear{"uib-dropdown-toggle" => "", :href => ""}
+        %span.thumb-sm.avatar.pull-right.m-t-n-sm.m-b-n-sm.m-l-sm
+          %img{:alt => "...", src: "/assets/images/blue_moon.jpg"}
+        %span.hidden-sm.hidden-md {{ current_user.name }}
+        %b.caret
+      %ul.dropdown-menu{"ng-controller" => "mentorLogController"}
+        %li
+          %a{"ui-sref" => "logout","ng-click" => "signOutUser()"}
+            %span Logout
+      / / dropdown
+  / / navbar right
+/ / navbar collapse

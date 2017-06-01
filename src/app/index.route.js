@@ -148,8 +148,8 @@
       templateUrl: 'app/views/layouts/mentor_layout.html',
       abstract: true
     })
-    .state('mentorLayout.mentor', {
-      url: '/auth',
+    .state('mentor', {
+      url: '/mentor/auth',
       templateUrl: 'app/views/mentor/mentor_auth.html'
     })
     .state('mentorLayout.mentorAcceptInvitation', {
