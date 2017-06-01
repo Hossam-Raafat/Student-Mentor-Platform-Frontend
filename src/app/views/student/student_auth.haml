@@ -1,6 +1,16 @@
-%div{"ng-controller" => "studentAuthController"}
-  %h2 Welcome dear student
-  %form{:method => "post", "ng-init" => "loginForm = {}", "ng-submit" => "login()"}
-    %input#email{"ng-model" => "loginForm.email", :placeholder => "email", :type => "email"}
-    %input#password{"ng-model" => "loginForm.password", :placeholder => "password", :type => "password", :value => ""}
-    %button#loginbtn{:name => "button", :type => "submit"} login
+.fade-in-right-big.smooth.ng-scope{"ui-view" => ""}
+  .container.w-xxl.w-auto-xs.ng-scope{"ng-controller" => "studentAuthController", "ng-init" => "app.settings.container = false;"}
+    %a.navbar-brand.block.m-t.ng-binding{:href => ""} Almakinah FAQ
+    .m-b-lg
+      .wrapper.text-center
+        %strong Sign in
+      %form.form-validation.ng-pristine.ng-valid-email.ng-invalid.ng-invalid-required{:name => "form", "ng-init" => "loginForm = {}", "ng-submit" => "login()"}
+        .text-danger.wrapper.text-center.ng-binding.ng-hide{"aria-hidden" => "true", "ng-show" => "authError"}
+        .list-group.list-group-sm
+          .list-group-item
+            %input.form-control.no-border.ng-pristine.ng-untouched.ng-valid-email.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "loginForm.email", :placeholder => "Email", :required => "", :type => "email"}
+          .list-group-item
+            %input.form-control.no-border.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "loginForm.password", :placeholder => "Password", :required => "", :type => "password"}
+        %button.btn.btn-lg.btn-primary.btn-block{"aria-disabled" => "true", :disabled => "disabled", "ng-disabled" => "form.$invalid", :type => "submit"} Log in
+    
+        

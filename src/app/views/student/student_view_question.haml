@@ -1,0 +1,27 @@
+%div{"ng-controller" => "studentViewQuestionController"}
+  %h1 Welcome {{ currentUser.name }}
+  %table
+    %thead
+      %tr
+        %th{:rowspan => "2"} Submit By
+        %th{:colspan => "3"} question
+        %th{:rowspan => "2"} Answer
+        %th{:rowspan => "2"} by
+        %th{:rowspan => "2"} votes
+      %tr
+        %th title
+        %th body
+        %th language
+    %tbody
+      %tr
+        %td {{question.student.name}}
+        %td {{question.title}}
+        %td {{question.body}}
+        %td {{question.language}}
+        %td {{question.response.answer}}
+        %td {{question.mentor.name}}
+        %td {{question.get_upvotes.length - question.get_downvotes.length}}
+        / %td {{quest.votes_for.size}}
+        %td
+          %button{"ng-click" => "upVoteQuestion(question)", :type => "submit"} Upvote
+          %button{"ng-click" => "downvoteVoteQuestion(question)", :type => "submit"} Downvote

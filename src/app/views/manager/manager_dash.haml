@@ -4,35 +4,3 @@
   %p {{unclaimedCount}}
   %h3 Number of resolved questions
   %p {{resolvedCount}} 
-
-
-
-  /
-
-    <h3>resolved qustions</h3>
-    <ul>
-    <li ng-repeat="question in resolvedQuestions">
-    <span>{{question.title}}</span>
-    <button ng-click='deleteItem(question)'>delete</button>
-    <p>{{question.body}}</p>
-    </li>
-    </ul>
-
-    <h3>unclaimed qustions</h3>
-    <ul>
-    <li ng-repeat="question in unclaimedQuestions">
-    <span>{{question.title}}</span>
-    <button ng-click='deleteQuestion(question)'>delete</button>
-    <p>{{question.body}}</p>
-    </li>
-    </ul>
-
-
-    <h3>all qustions</h3>
-    <ul>
-    <li ng-repeat="question in allQuestions">
-    <span>{{question.title}}</span>
-    <button ng-click='deleteItem(question)'>delete</button>
-    <p>{{question.body}}</p>
-    </li>
-    </ul>
