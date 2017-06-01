@@ -5,14 +5,12 @@
     %table.table{"ui-jq" => "footable", "ui-options" => "{\r\n        \"paging\": {\r\n          \"enabled\": true\r\n        },\r\n        \"filtering\": {\r\n          \"enabled\": true\r\n        },\r\n        \"sorting\": {\r\n          \"enabled\": true\r\n        }}"}
       %thead
         %tr
-          %th{"data-breakpoints" => "xs"} ID
           %th Name
           %th Status
           %th Email
           %th 
       %tbody
         %tr{"data-expanded" => "true", "ng-repeat" => "mentor in allMentors"}
-          %td {{mentor.id}}
           %td {{mentor.name}}
           %td 
             %p{"ng-if" => "mentor.status == true"} available

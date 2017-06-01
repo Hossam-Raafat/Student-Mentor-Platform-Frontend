@@ -129,7 +129,14 @@
        resolvedUser: CheckForAuthenticatedUser
      }
    })
-   .state('managerLayout.managerStudents', {
+   .state('managerLayout.managerStudentProfile', {
+     url: '/dash/students/{id:[0-9]{1,8}}', // how to make it view the name of the mentor?
+     templateUrl: 'app/views/manager/student_profile.html',
+     resolve: {
+       resolvedUser: CheckForAuthenticatedUser
+     }
+   })
+   .state('managerLayout.managerStudentsList', {
      url: '/dash/students',
      templateUrl: 'app/views/manager/manager_students.html',
      resolve: {
