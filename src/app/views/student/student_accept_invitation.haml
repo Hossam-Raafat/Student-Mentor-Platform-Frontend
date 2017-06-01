@@ -1,7 +1,7 @@
 %div{"ng-controller" => "studentAcceptCtrl"}
   %h2 You have been invited
   %form{:method => "post", "ng-init" => "acceptForm = {}", "ng-submit" => "accept()"}
-    %input{"ng-model" => "acceptForm.password", :placeholder => "password", :type => "password", :value => ""}/
-    %input{"ng-model" => "acceptForm.passwordConfirmation", :placeholder => "password confirmation", :type => "password", :value => ""}/
-    %input{:type => "text" , "ng-model" => "acceptForm.name",  :placeholder => "username"}/
+    %input{"ng-model" => "acceptForm.password", :placeholder => "password", :type => "password", :value => ""}
+    %input{"ng-model" => "acceptForm.passwordConfirmation", :placeholder => "password confirmation", :type => "password", :value => ""}
+    %input{:type => "text" , "ng-model" => "acceptForm.name",  :placeholder => "username"}
     %button{:name => "button", :type => "submit"} accept
