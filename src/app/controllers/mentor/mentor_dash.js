@@ -55,7 +55,7 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
     //       console.log(err);
     //     })
     //   }
-  $scope.viewAll = function () {
+  $scope.viewAll = function (question) {
     $http.get('http://localhost:3000/mentor/questions.json')
       .then(function(success) {
       console.log(success);

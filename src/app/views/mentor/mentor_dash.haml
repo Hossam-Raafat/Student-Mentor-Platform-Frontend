@@ -16,6 +16,12 @@
       .panel-body
         %div Language: {{question.language}}
         %div Question: {{question.body}}
+        %i.icon-clock
+          %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+        by
+        %i.icon-fire
+      %span {{question.student.name}}
+        .m-t-sm
         .m-t-sm
           %a.btn.btn-default.btn-xs{:href => "", 'ng-click'=> "claimQuestion(question)"}
             %i.fa.fa-mail-reply.text-muted
@@ -32,6 +38,12 @@
         .panel-body
           %div Language: {{question.language}}
           %div Question: {{question.body}}
+          %span Submited
+          %i.icon-clock
+            %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+          by
+          %i.icon-fire
+          %span {{question.student.name}}
           .m-t-sm
             %a.btn.btn-default.btn-xs{:href => "", 'ng-init'=> "showForm = false", 'ng-click'=> "showForm = !showForm"}
               %i.fa.fa-mail-reply.text-muted
@@ -52,3 +64,10 @@
       .panel-body
         %div Language: {{question.language}}
         %div Question: {{question.body}}
+        %span Submited
+        %i.icon-clock
+          %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+        by
+        %i.icon-fire
+        %span {{question.student.name}}
+        %span , Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later.
