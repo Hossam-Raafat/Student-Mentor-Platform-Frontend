@@ -1,10 +1,17 @@
-angular.module('alMakinah').controller('studentDashController', function ($scope, $http, $state, AuthService, $window) {
+angular.module('alMakinah').controller('studentDashController', function ($scope, $http, $state, AuthService, $window, $stateParams) {
   
+  AuthService.logged_in_user().then(function (user) {
+    $scope.currentUser   = user;
+    }, function () {
+      $window.alert("please sign in to view this page");
+      $state.go('studentLayout.student');
+  });
+
   $scope.resolvedQuestions = [];
   $http.get('http://localhost:3000/student/questions.json', { params: { filter: 'resolved'} }).then(
     function(success) {
       $scope.resolvedQuestions = success.data;
-      console.log(success);
+      console.log(success.data);
     },
     function(err) {
       console.log(err);
@@ -21,14 +28,6 @@ angular.module('alMakinah').controller('studentDashController', function ($scope
       console.log(err);
     }
   );
-
-  AuthService.logged_in_user().then(function (user) {
-    $scope.currentUser = user;
-    }, function () {
-      $state.go('student');
-  });
-
-
 
   $scope.pop = function(){
     toaster.pop('Question successfully deleted');
@@ -47,5 +46,27 @@ angular.module('alMakinah').controller('studentDashController', function ($scope
         console.log(err);
       })
       
+  }
+  $scope.upVoteQuestion = function(question){
+    $http.post('http://localhost:3000/student/questions/' + question.id + '/votes.json',{ filter: 'upvote' } ).then(
+      function(success){
+        console.log(success);
+        question.get_downvotes = success.data.get_downvotes;
+        question.get_upvotes = success.data.get_upvotes;
+      },
+      function(err){
+        console.log(err);
+      })
+  }
+  $scope.downvoteVoteQuestion = function(question){
+    $http.post('http://localhost:3000/student/questions/' + question.id + '/votes.json').then(
+      function(success){
+        console.log(success);
+        question.get_downvotes = success.data.get_downvotes;
+        question.get_upvotes = success.data.get_upvotes;
+      },
+      function(err){
+        console.log(err);
+      })
   }
 });

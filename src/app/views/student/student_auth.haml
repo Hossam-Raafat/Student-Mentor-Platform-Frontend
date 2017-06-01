@@ -1,6 +1,6 @@
 %div{"ng-controller" => "studentAuthController"}
   %h2 Welcome dear student
   %form{:method => "post", "ng-init" => "loginForm = {}", "ng-submit" => "login()"}
-    %input#email{"ng-model" => "loginForm.email", :placeholder => "email", :type => "email"}/
-    %input#password{"ng-model" => "loginForm.password", :placeholder => "password", :type => "password", :value => ""}/
+    %input#email{"ng-model" => "loginForm.email", :placeholder => "email", :type => "email"}
+    %input#password{"ng-model" => "loginForm.password", :placeholder => "password", :type => "password", :value => ""}
     %button#loginbtn{:name => "button", :type => "submit"} login

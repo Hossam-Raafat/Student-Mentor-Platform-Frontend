@@ -7,7 +7,7 @@
     return $auth.validateUser().then(function (user) {
       // if resolved successfully return a user object that will set
       // the variable `resolvedUser`
-      if (user.configName === 'manager') {
+      if (user.configName == 'manager') {
         return user;
       }
       $state.go('studentLayout.student');
@@ -20,7 +20,7 @@
     return $auth.validateUser().then(function (user) {
       // if resolved successfully return a user object that will set
       // the variable `resolvedUser`
-      if (user.configName === 'student') {
+      if (user.configName == 'student') {
         return user;
       }
       $state.go('student');
@@ -58,11 +58,11 @@
         templateUrl: 'app/views/student/student_accept_invitation.html'
       })
       .state('studentLayout.studentDash', {
-        url: 'dash',
+        url: 'student/dash',
         templateUrl: 'app/views/student/student_dash.html'
       })
       .state('studentLayout.studentRequest', {
-        url: '/request',
+        url: 'request',
         templateUrl: 'app/views/student/student_request.html',
         resolve: {
           resolvedUser: CheckForAuthenticatedStudent
