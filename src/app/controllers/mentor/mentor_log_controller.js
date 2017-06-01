@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('mentorLogController', function ($scope, $auth, $http, AuthService) {
+angular.module('alMakinah').controller('mentorLogController', function ($scope, $auth, $http, $state, AuthService) {
 
   // listening to the student login broadcast which is triggered from the auth service
   $scope.$on('mentorLoggedIn', function () {
@@ -12,6 +12,7 @@ angular.module('alMakinah').controller('mentorLogController', function ($scope, 
      // handle success response
       $scope.mentor_logged_in = false;
       console.log(resp);
+      $state.go('mentorLayout.mentor');
     })
     .catch(function (resp) {
       // handle error response

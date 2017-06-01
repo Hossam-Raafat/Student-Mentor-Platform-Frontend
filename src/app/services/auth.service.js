@@ -16,7 +16,6 @@ angular.module('alMakinah').factory('AuthService', function ($http, $auth, $stat
       $rootScope.$broadcast('managerLoggedIn');
     },
     // authenticate_student // checks if student is logged in
-    // authenticate_student // checks if student is logged in
     logged_in_user: function (callback) {
       return $auth.validateUser();
       // .then(function (user) {

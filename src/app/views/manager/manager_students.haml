@@ -1,2 +1,20 @@
-%h1 students' List
+.panel.panel-default{"ng-controller" => "managerStudents"}
+  .panel-heading
+    List of AlMakinah's Students
+  %div
+    %table.table{"ui-jq" => "footable", "ui-options" => "{\r\n        \"paging\": {\r\n          \"enabled\": true\r\n        },\r\n        \"filtering\": {\r\n          \"enabled\": true\r\n        },\r\n        \"sorting\": {\r\n          \"enabled\": true\r\n        }}"}
+      %thead
+        %tr
+          %th Name
+          %th program
+          %th Email
+          %th 
+      %tbody
+        %tr{"data-expanded" => "true", "ng-repeat" => "student in allStudents"}
+          %td {{student.name}}
+          %td {{student.program}}
+          %td {{student.email}}
+          %td 
+            %a{"ui-sref" => "managerLayout.managerStudentProfile({id:student.id})"} Profile
+        
 %a{"ui-sref" => "managerLayout.managerDash"} Dashboard

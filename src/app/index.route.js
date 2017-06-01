@@ -7,7 +7,20 @@
     return $auth.validateUser().then(function (user) {
       // if resolved successfully return a user object that will set
       // the variable `resolvedUser`
-      if (user.configName === 'manager') {
+      if (user.configName == 'manager') {
+        return user;
+      }
+      $state.go('studentLayout.student');
+    }, function () {
+      $state.go('studentLayout.student');
+    });
+  }
+
+  function CheckForAuthenticatedMentor($auth, $state) {
+    return $auth.validateUser().then(function (user) {
+      // if resolved successfully return a user object that will set
+      // the variable `resolvedUser`
+      if (user.configName == 'mentor') {
         return user;
       }
       $state.go('studentLayout.student');
@@ -20,7 +33,7 @@
     return $auth.validateUser().then(function (user) {
       // if resolved successfully return a user object that will set
       // the variable `resolvedUser`
-      if (user.configName === 'student') {
+      if (user.configName == 'student') {
         return user;
       }
       $state.go('student');
@@ -54,15 +67,15 @@
         templateUrl: 'app/views/student/student_auth.html'
       })
       .state('studentLayout.studentAcceptInvitation', {
-        url: '/accept/:token',
+        url: 'accept/:token',
         templateUrl: 'app/views/student/student_accept_invitation.html'
       })
       .state('studentLayout.studentDash', {
-        url: 'dash',
+        url: 'student/dash',
         templateUrl: 'app/views/student/student_dash.html'
       })
       .state('studentLayout.studentRequest', {
-        url: '/request',
+        url: 'request',
         templateUrl: 'app/views/student/student_request.html',
         resolve: {
           resolvedUser: CheckForAuthenticatedStudent
@@ -116,7 +129,14 @@
        resolvedUser: CheckForAuthenticatedUser
      }
    })
-   .state('managerLayout.managerStudents', {
+   .state('managerLayout.managerStudentProfile', {
+     url: '/dash/students/{id:[0-9]{1,8}}', // how to make it view the name of the mentor?
+     templateUrl: 'app/views/manager/student_profile.html',
+     resolve: {
+       resolvedUser: CheckForAuthenticatedUser
+     }
+   })
+   .state('managerLayout.managerStudentsList', {
      url: '/dash/students',
      templateUrl: 'app/views/manager/manager_students.html',
      resolve: {
@@ -139,7 +159,7 @@
       url: '/dash',
       templateUrl: 'app/views/mentor/mentor_dash.html',
       resolve: {
-        resolvedUser: CheckForAuthenticatedUser
+        resolvedUser: CheckForAuthenticatedMentor
       }
     });
 
