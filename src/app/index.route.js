@@ -10,9 +10,9 @@
       if (user.configName === 'manager') {
         return user;
       }
-      $state.go('student');
+      $state.go('studentLayout.student');
     }, function () {
-      $state.go('student');
+      $state.go('studentLayout.student');
     });
   }
 
@@ -23,9 +23,9 @@
       if (user.configName === 'student') {
         return user;
       }
-      $state.go('student');
+      $state.go('studentLayout.student');
     }, function () {
-      $state.go('student');
+      $state.go('studentLayout.student');
     });
   }
 

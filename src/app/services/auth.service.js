@@ -8,6 +8,7 @@ angular.module('alMakinah').factory('AuthService', function ($http, $auth, $stat
     },
     loginMentor: function () {
       // tell the world that I'm logged in
+      console.log("going to the dashboard!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       $rootScope.$broadcast('mentorLoggedIn');
       $state.go('mentorLayout.mentorDash')
     },

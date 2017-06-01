@@ -1,3 +1,7 @@
 %div{"ng-controller" => "mentorDashController"}
   %span {{user.email}}
   in mentor dash
+
+  %input{"ng-model"=>"inputText"}
+    %button{"ng-click"=>"sendToMyChannel(inputText)"} Send
+
