@@ -10,4 +10,7 @@
     %p
       %label{:for => "language"} language
       %input#language{"ng-model" => "question.language", :required => "", :type => "text"}
+    %p
+      %label{:for => "screenshot"} screenshot
+      %input#screenshot{"ng-model" => "question.screenshot","ngf-select" => "", :type => "file"}
     %button Edit

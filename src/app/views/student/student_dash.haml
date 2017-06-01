@@ -17,7 +17,8 @@
     %tbody
       %tr{"ng-repeat" => "quest in resolvedQuestions | filter: search"}
         %td {{quest.student.name}}
-        %td {{quest.title}}
+        %td 
+          %a{"ui-sref" => "studentLayout.studentViewQuestion({id:quest.id})"} {{quest.title}}
         %td {{quest.body}}
         %td {{quest.language}}
         %td {{quest.response.answer}}
@@ -45,7 +46,8 @@
     %tbody
       %tr{"ng-repeat" => "question in currentStudentQuestions"}
         %td {{question.student.name}}
-        %td {{question.title}}
+        %td 
+          %a{"ui-sref" => "studentLayout.studentViewQuestion({id:question.id})"} {{question.title}}
         %td {{question.body}}
         %td {{question.language}}
         %td{"ng-if" => "question.response.status == true"} {{question.response.answer}}
@@ -59,3 +61,24 @@
         %td{"ng-if" => "question.response.status == nil"}
           %a{"ui-sref" => "studentLayout.studentEditQuestion({id:question.id})"} Edit
   %a{"ui-sref" => "studentLayout.studentRequest"} Ask a question
+
+.panel
+  .wrapper-lg
+    %h2.m-t-none
+      %a{:href => ""} Bootstrap 3: What you need to know
+    %div
+      %p
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris at pellentesque volutpat.
+      %h3 Html5 and CSS3
+      %p
+        Phasellus at ultricies neque, quis malesuada augue. Donec eleifend condimentum nisl eu consectetur. Integer eleifend, nisl venenatis consequat iaculis, lectus arcu malesuada sem, dapibus porta quam lacus eu neque.
+    .line.line-lg.b-b.b-light
+    .text-muted
+      %i.fa.fa-user.text-muted
+      by
+      %a.m-r-sm{:href => ""} Admin
+      %i.fa.fa-clock-o.text-muted
+      Feb 15, 2013
+      %a.m-l-sm{:href => ""}
+        %i.fa.fa-comment-o.text-muted
+        4 comments
