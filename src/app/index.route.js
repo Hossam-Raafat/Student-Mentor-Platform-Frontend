@@ -16,6 +16,19 @@
     });
   }
 
+  function CheckForAuthenticatedMentor($auth, $state) {
+    return $auth.validateUser().then(function (user) {
+      // if resolved successfully return a user object that will set
+      // the variable `resolvedUser`
+      if (user.configName == 'mentor') {
+        return user;
+      }
+      $state.go('studentLayout.student');
+    }, function () {
+      $state.go('studentLayout.student');
+    });
+  }
+
   function CheckForAuthenticatedStudent($auth, $state) {
     return $auth.validateUser().then(function (user) {
       // if resolved successfully return a user object that will set
@@ -54,7 +67,7 @@
         templateUrl: 'app/views/student/student_auth.html'
       })
       .state('studentLayout.studentAcceptInvitation', {
-        url: '/accept/:token',
+        url: 'accept/:token',
         templateUrl: 'app/views/student/student_accept_invitation.html'
       })
       .state('studentLayout.studentDash', {
@@ -139,7 +152,7 @@
       url: '/dash',
       templateUrl: 'app/views/mentor/mentor_dash.html',
       resolve: {
-        resolvedUser: CheckForAuthenticatedUser
+        resolvedUser: CheckForAuthenticatedMentor
       }
     });
 

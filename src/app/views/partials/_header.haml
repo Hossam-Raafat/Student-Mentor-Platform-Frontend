@@ -5,7 +5,10 @@
   %button.pull-right.visible-xs{"data-target" => ".app-aside", "ui-scroll-to" => "app", "ui-toggle-class" => "off-screen"}
     %i.glyphicon.glyphicon-align-justify
   / brand
-  
+  %a.navbar-brand.text-lt{:href => "#/"}
+    %img{:alt => ".", :src => "/assets/images/Logo+Text+bg.png"}
+    %span.hidden-folded.m-l-xs {{app.name}}
+
   / / brand
 / / navbar header
 / navbar collapse
