@@ -21,6 +21,8 @@
         %td {{question.response.answer}}
         %td {{question.mentor.name}}
         %td {{question.get_upvotes.length - question.get_downvotes.length}}
+        %td 
+          %img{ src: 'http://localhost:3000{{ question.screenshot.url }}'}
         / %td {{quest.votes_for.size}}
         %td
           %button{"ng-click" => "upVoteQuestion(question)", :type => "submit"} Upvote
