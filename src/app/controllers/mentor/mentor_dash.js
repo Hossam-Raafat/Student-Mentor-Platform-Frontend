@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('mentorDashController', function ($scope, $http, AuthService, $stateParams) {
+angular.module('alMakinah').controller('mentorDashController', function ($scope, $http, AuthService, $stateParams, ActionCableChannel) {
   $scope.unclaimedQuestions = [];
   $scope.claimedQuestions = [];
   $scope.questions = [];
@@ -17,6 +17,23 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
   //       console.log(err);
   //     }
   // )
+
+    var consumer = new ActionCableChannel("NotificationChannel");
+    var callback = function(message) {
+      console.log(message.title);
+      console.log(message.body);
+      $scope.questions.push(message);
+      $scope.questions.push(message);
+
+    };
+    consumer.subscribe(callback).then(function(){
+      // $scope.sendToMyChannel = function(message){
+      //   consumer.send(message);
+      // };
+      $scope.$on("$destroy", function(){
+        consumer.unsubscribe()
+      });
+    });
 
   $http.get('http://localhost:3000/mentor/questions.json')
   .then(function(success) {
