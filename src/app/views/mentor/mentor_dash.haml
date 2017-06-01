@@ -10,9 +10,6 @@
       .panel-heading.pos-rlt.b-b.b-light
         %span.arrow.left
         %a{:href => ""} {{question.title}}
-        %span.text-muted.m-l-sm.pull-right
-          %i.fa.fa-clock-o
-          Just now
       .panel-body
         %div Language: {{question.language}}
         %div Question: {{question.body}}
@@ -20,7 +17,7 @@
           %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
         by
         %i.icon-fire
-      %span {{question.student.name}}
+        %span {{question.student.name}}
         .m-t-sm
         .m-t-sm
           %a.btn.btn-default.btn-xs{:href => "", 'ng-click'=> "claimQuestion(question)"}
@@ -60,7 +57,6 @@
         %a{:href => ""} {{question.title}}
         %span.text-muted.m-l-sm.pull-right
           %i.fa.fa-clock-o
-          Just now
       .panel-body
         %div Language: {{question.language}}
         %div Question: {{question.body}}
@@ -70,4 +66,4 @@
         by
         %i.icon-fire
         %span {{question.student.name}}
-        %span , Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later.
+        %p{"ng-if" => "question.response.status == false"} Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later by {{question.mentor.name}}.
