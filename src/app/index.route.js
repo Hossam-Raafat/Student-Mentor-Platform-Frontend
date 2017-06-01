@@ -43,7 +43,7 @@
   }
 
 
-    $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
+    // $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
     // rid of the '/#!/' in the url.
 
     // HOME STATES AND NESTED VIEWS ========================================
@@ -162,8 +162,8 @@
       templateUrl: 'app/views/layouts/mentor_layout.html',
       abstract: true
     })
-    .state('mentorLayout.mentor', {
-      url: '/auth',
+    .state('mentor', {
+      url: '/mentor/auth',
       templateUrl: 'app/views/mentor/mentor_auth.html'
     })
     .state('mentorLayout.mentorAcceptInvitation', {

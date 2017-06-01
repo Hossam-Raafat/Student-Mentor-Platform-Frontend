@@ -1,4 +1,21 @@
-%div{"ng-controller" => "mentorLogController"}
-  %nav
-    %button#logout{:name => "button", "ng-click" => "signOutUser()", "ng-if" => "mentor_logged_in", :type => "button"} Logout
-  %ui-view
+/     %ui-view
+#dashboard-wrapper.app-header-fixed.app-aside-fixed
+  / navbar
+  .app-header.bg-primary.navbar{"data-ng-include": " 'app/views/partialsMentor/_header.html' "}
+  / / navbar
+  / menu
+  .app-aside.hidden-xs.bg-primary{"data-ng-include": " 'app/views/partialsMentor/_aside.html' "}
+  / / menu
+  / content
+  .app-content{ "ng-class": "{ 'h-full': setHideFooter() }" }
+    %div{"ui-butterbar": ""}
+    .app-content-body.fade-in{"ui-view": "", "ng-class": "{ 'h-full app-content-full': app.hideFooter }"}
+  / /content
+  -#/ footer
+  -#.app-footer.wrapper.b-t.bg-light{ "ng-class": "{ 'hide': app.hideFooter }" }
+    -#%span.pull-right
+      -#Fluka {{app.version}}
+      -#%a.m-l-sm.text-muted{href: "", "ui-scroll-to": "app"}
+        -#%i.fa.fa-long-arrow-up
+    -#\&copy; 2016 Fluka.io, All rights reserved.
+  -#/ / footer
