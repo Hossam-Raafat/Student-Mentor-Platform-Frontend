@@ -7,7 +7,7 @@ angular.module('alMakinah').controller('managerAuthController', function ($scope
     .then(function (resp) {
       console.log(resp);
       AuthService.loginManager(resp);
-      $state.go('managerInvite');
+      $state.go('managerLayout.managerDash');
     })
     .catch(function (resp) {
       console.log(resp);

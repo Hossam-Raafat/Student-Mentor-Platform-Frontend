@@ -10,9 +10,9 @@
       if (user.configName === 'manager') {
         return user;
       }
-      $state.go('student');
+      $state.go('studentLayout.student');
     }, function () {
-      $state.go('student');
+      $state.go('studentLayout.student');
     });
   }
 
@@ -46,7 +46,7 @@
     // })
       .state('studentLayout', {
         url: '/',
-        templateUrl: 'app/views/student/student_layout.html',
+        templateUrl: 'app/views/layouts/student_layout.html',
         abstract: true
       })
       .state('studentLayout.student', {
@@ -77,15 +77,15 @@
       })
       .state('managerLayout', {
         url: '/manager',
-        templateUrl: 'app/views/manager/manager_layout.html',
+        templateUrl: 'app/views/layouts/manager_layout.html',
         abstract: true
       })
       // .state('managerLayout.homepage', {
       //   url: '',
       //   templateUrl: 'app/manager/auth/manager_auth.html'
       // })
-    .state('managerLayout.manager', {
-      url: '/auth',
+    .state('manager', {
+      url: '/manager/auth',
       templateUrl: 'app/views/manager/manager_auth.html'
     })
     .state('managerLayout.managerInvite', {
@@ -125,7 +125,7 @@
    })
     .state('mentorLayout', {
       url: '/mentor',
-      templateUrl: 'app/views/mentor/mentor_layout.html',
+      templateUrl: 'app/views/layouts/mentor_layout.html',
       abstract: true
     })
     .state('mentorLayout.mentor', {
