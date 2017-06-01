@@ -1,20 +1,22 @@
-%div{"ng-controller" => "mentorDashController"}
-  %h1 Welcome {{user.name}}
-    %button.btn.m-b-xs.btn-sm.btn-primary.btn-addon
-      %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"}
-      %span{"ng-if" => "mentor.status == true"} uncheck if you are busy
-      %span{"ng-if" => "mentor.status == false"} Check if you can answer a question now
+%div.col-lg-10.col-lg-offset-1{"ng-controller" => "mentorDashController"}
+  %h1 Welcome {{user.name}}!
+  %button.btn-status.btn.m-b-xs.btn-sm.btn-primary.btn-addon
+    %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"}
+    %span{"ng-if" => "mentor.status == true" } busy
+    %span{"ng-if" => "mentor.status == false"} online
 
   %h4 unclaimed questions list ({{unclaimedQuestions.length}})
     .m-l-lg.panel.b-a{'ng-repeat' => "question in unclaimedQuestions"}
       .panel-heading.pos-rlt.b-b.b-light
         %span.arrow.left
         %a{:href => ""} {{question.title}}
+        %span.text-muted.m-l-sm.pull-right
+          %i.fa.fa-clock-o
+            %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
       .panel-body
         %div Language: {{question.language}}
         %div Question: {{question.body}}
-        %i.icon-clock
-          %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+        %div{"ng-if" => "question.screenshot == false"} Picture: {{question.screenshot}}
         by
         %i.icon-fire
         %span {{question.student.name}}
@@ -31,14 +33,12 @@
           %a{:href => ""} {{question.title}}
           %span.text-muted.m-l-sm.pull-right
             %i.fa.fa-clock-o
-            Just now
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
         .panel-body
           %div Language: {{question.language}}
           %div Question: {{question.body}}
-          %span Submited
-          %i.icon-clock
-            %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
-          by
+          %div{"ng-if" => "question.screenshot == false"} Picture: {{question.screenshot}}
+          %span Submited by:
           %i.icon-fire
           %span {{question.student.name}}
           .m-t-sm
@@ -50,7 +50,7 @@
               %button{:type => "submit", 'ng-click'=> "showForm = !showForm"} Submit
 
     %h4 All Questions
-    %button{'ng-click'=> "viewAll(question)"} View All Questions
+    %button.btn.m-b-xs.w-xs.btn-default.btn-rounded{'ng-click'=> "viewAll(question)"} View All Questions
     .m-l-lg.panel.b-a{'ng-repeat' => "question in questions"}
       .panel-heading.pos-rlt.b-b.b-light
         %span.arrow.left
