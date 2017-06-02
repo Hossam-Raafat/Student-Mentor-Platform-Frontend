@@ -20,11 +20,9 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
 
     var consumer = new ActionCableChannel("NotificationChannel");
     var callback = function(message) {
-      console.log(message.title);
+      //console.log(message.title);
       console.log(message.body);
-      $scope.questions.push(message);
-      $scope.questions.push(message);
-
+      $scope.questions.push(message.body);
     };
     consumer.subscribe(callback).then(function(){
       // $scope.sendToMyChannel = function(message){
