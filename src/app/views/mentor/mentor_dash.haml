@@ -1,56 +1,57 @@
 %div.col-lg-10.col-lg-offset-1{"ng-controller" => "mentorDashController"}
   %h1 Welcome {{user.name}}!
   %button.btn-status.btn.m-b-xs.btn-sm.btn-primary.btn-addon
-    %input{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-model" => "mentor.status", :type => "checkbox"}
-    %span{"ng-if" => "mentor.status == true" } busy
-    %span{"ng-if" => "mentor.status == false"} online
+    %input#toggle-1{"ng-change" => "editStatus(mentor.status, mentor.id)", "ng-click" => 'class()', "ng-model" => "mentor.status", :type => "checkbox"}
+    %span{"ng-if" => "mentor.status == true", "ng-show" => "mentor.status"} online
+    %span{"ng-if" => "mentor.status == false", "ng-hide" => "mentor.status" } offline
 
-  %h4 unclaimed questions list ({{unclaimedQuestions.length}})
-    .m-l-lg.panel.b-a{'ng-repeat' => "question in unclaimedQuestions"}
-      .panel-heading.pos-rlt.b-b.b-light
-        %span.arrow.left
-        %a{:href => ""} {{question.title}}
-        %span.text-muted.m-l-sm.pull-right
-          %i.fa.fa-clock-o
-            %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
-      .panel-body
-        %div Language: {{question.language}}
-        %div Question: {{question.body}}
-        %div{"ng-if" => "question.screenshot == false"} Picture: {{question.screenshot}}
-        by
-        %i.icon-fire
-        %span {{question.student.name}}
-        .m-t-sm
-        .m-t-sm
-          %a.btn.btn-default.btn-xs{:href => "", 'ng-click'=> "claimQuestion(question)"}
-            %i.fa.fa-mail-reply.text-muted
-            Claim Question
-
-    %h4 Questions I claimed ({{claimedQuestions.length}})
-      .m-l-lg.panel.b-a{'ng-repeat' => "question in claimedQuestions"}
-        .panel-heading.pos-rlt.b-b.b-light
-          %span.arrow.left
-          %a{:href => ""} {{question.title}}
-          %span.text-muted.m-l-sm.pull-right
-            %i.fa.fa-clock-o
-              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
-        .panel-body
-          %div Language: {{question.language}}
-          %div Question: {{question.body}}
-          %div{"ng-if" => "question.screenshot == false"} Picture: {{question.screenshot}}
-          %span Submited by:
-          %i.icon-fire
-          %span {{question.student.name}}
-          .m-t-sm
-            %a.btn.btn-default.btn-xs{:href => "", 'ng-init'=> "showForm = false", 'ng-click'=> "showForm = !showForm"}
-              %i.fa.fa-mail-reply.text-muted
-              Answer Now
-            %form{"ng-show" => "showForm", "ng-submit" => "addResponse(answer, question.id)"}
-              %textarea{"ng-model" => "answer"}
-              %button{:type => "submit", 'ng-click'=> "showForm = !showForm"} Submit
+-# %div.col-lg-10.col-lg-offset-1{"ng-controller" => "mentorDashController"}
+-#   %h4 unclaimed questions list ({{unclaimedQuestions.length}})
+-#     .m-l-lg.panel.b-a{'ng-repeat' => "question in unclaimedQuestions"}
+-#       .panel-heading.pos-rlt.b-b.b-light
+-#         %span.arrow.left
+-#         %a{:href => ""} {{question.title}}
+-#         %span.text-muted.m-l-sm.pull-right
+-#           %i.fa.fa-clock-o
+-#             %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+-#       .panel-body
+-#         %div Language: {{question.language}}
+-#         %div Question: {{question.body}}
+-#         %div{"ng-if" => "question.screenshot == false"} Picture: {{question.screenshot}}
+-#         by
+-#         %i.icon-fire
+-#         %span {{question.student.name}}
+-#         .m-t-sm
+-#         .m-t-sm
+-#           %a.btn.btn-default.btn-xs{:href => "", 'ng-click'=> "claimQuestion(question)"}
+-#             %i.fa.fa-mail-reply.text-muted
+-#             Claim Question
+-#
+-#     %h4 Questions I claimed ({{claimedQuestions.length}})
+-#       .m-l-lg.panel.b-a{'ng-repeat' => "question in claimedQuestions"}
+-#         .panel-heading.pos-rlt.b-b.b-light
+-#           %span.arrow.left
+-#           %a{:href => ""} {{question.title}}
+-#           %span.text-muted.m-l-sm.pull-right
+-#             %i.fa.fa-clock-o
+-#               %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+-#         .panel-body
+-#           %div Language: {{question.language}}
+-#           %div Question: {{question.body}}
+-#           %div{"ng-if" => "question.screenshot == false"} Picture: {{question.screenshot}}
+-#           %span Submited by:
+-#           %i.icon-fire
+-#           %span {{question.student.name}}
+-#           .m-t-sm
+-#             %a.btn.btn-default.btn-xs{:href => "", 'ng-init'=> "showForm = false", 'ng-click'=> "showForm = !showForm"}
+-#               %i.fa.fa-mail-reply.text-muted
+-#               Answer Now
+-#             %form{"ng-show" => "showForm", "ng-submit" => "addResponse(answer, question.id)"}
+-#               %textarea{"ng-model" => "answer"}
+-#               %button{:type => "submit", 'ng-click'=> "showForm = !showForm"} Submit
 
     %h4 All Questions
-    %button.btn.m-b-xs.w-xs.btn-default.btn-rounded{'ng-click'=> "viewAll(question)"} View All Questions
+    %button.btn.m-b-xs.w-xs.btn-default.btn-block{'ng-click'=> "viewAll(question)"} View All Questions
     .m-l-lg.panel.b-a{'ng-repeat' => "question in questions"}
       .panel-heading.pos-rlt.b-b.b-light
         %span.arrow.left
@@ -67,3 +68,181 @@
         %i.icon-fire
         %span {{question.student.name}}
         %p{"ng-if" => "question.response.status == false"} Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later by {{question.mentor.name}}.
+
+%div.col-lg-10.col-md-offset-1.wrapper-md{"ng-controller" => "mentorDashController"}
+  %form.m-b-md.ng-pristine.ng-valid{:action => "#"}
+    .input-group
+      %input.form-control.input-lg{"ng-model" => "search", :placeholder => "Search", :type => "text"}
+
+  %uib-tabset{:active => "active"}
+    %uib-tab{'ng-click'=> "viewAll(question)"}
+      %uib-tab-heading
+        %i.icon-list
+        All Questions
+      .col-lg-12.b-a
+        .panel.m-t-md{"ng-repeat" => "question in allQuestions | filter: search"}
+          .wrapper-lg
+            %h2.m-t-none
+            %h3 {{question.title}}
+            .text-muted
+
+              %span Submited
+              %i.icon-clock
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+              by
+              %i.icon-fire
+              %span
+                %span {{question.student.name}}
+              %span{"ng-if" => "question.response.status == false"} , Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later.
+            %div
+            %br
+              %p {{question.body}}
+              %div{"ng-if" => "question.response.status == true"}
+                %h4 ANSWER:
+                %p{"hm-dots-class" => "dots", "hm-less-text" => "read less", "hm-limit" => "100", "hm-link-class" => "links", "hm-more-text" => "read more", "hm-read-more" => "", "hm-text" => "{{question.response.answer}}"}
+            .line.line-lg.b-b.b-light
+            .text-muted
+
+              %p{"ng-if" => "question.response.status == true"} Rate:
+                %span {{question.rate.star}}/5
+
+
+              %p language: {{question.language}}
+
+    %uib-tab
+      %uib-tab-heading
+        %i.icon-like
+        Questions I Claimed
+      .col-lg-12.b-a
+        .panel.m-t-md{"ng-repeat" => "question in calimedQuestions | filter: search"}
+          .wrapper-lg
+            %h2.m-t-none
+            %h3 {{question.title}}
+            .text-muted
+
+              %span Submited
+              %i.icon-hand
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+              by
+              %i.icon-fire
+              %span
+                %span {{question.student.name}}
+              %span{"ng-if" => "question.response.status == false"} , Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later.
+            %div
+            %br
+              %p {{question.body}}
+              %div{"ng-if" => "question.response.status == true"}
+                %h4 ANSWER:
+                %p{"hm-dots-class" => "dots", "hm-less-text" => "read less", "hm-limit" => "100", "hm-link-class" => "links", "hm-more-text" => "read more", "hm-read-more" => "", "hm-text" => "{{question.response.answer}}"}
+            .line.line-lg.b-b.b-light
+            .text-muted
+
+              %p{"ng-if" => "question.response.status == true"} Rate:
+                %span {{question.rate.star}}/5
+
+
+              %p language: {{question.language}}
+    %uib-tab
+      %uib-tab-heading
+        %i.icon-puzzle
+        Unclaimed
+      .col-lg-12.b-a
+        .panel.m-t-md{"ng-repeat" => "question in unclaimedQuestions | filter: search"}
+          .wrapper-lg
+            %h2.m-t-none
+            %h3 {{question.title}}
+            .text-muted
+
+              %span Submited
+              %i.icon-clock
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+              by
+              %i.icon-fire
+              %span
+                %span {{question.student.name}}
+            %div
+            %br
+              %p {{question.body}}
+
+            .line.line-lg.b-b.b-light
+            .text-muted
+              %p language: {{question.language}}
+
+  -# %ul.nav.nav-tabs
+  -#   %li
+  -#     %a{"aria-expanded" => "false", "data-target" => "#tab_1", "data-toggle" => "tab", 'ng-click'=> "viewAll(question)"}
+  -#       Questions I claimed
+  -#       %span.badge.badge-sm.m-l-xs ({{claimedQuestions.length}})
+  -#   %li.active
+  -#     %a{"aria-expanded" => "true", "data-target" => "#tab_2", "data-toggle" => "tab", :href => ""}
+  -#       unclaimed questions list
+  -#       %span.badge.bg-danger.badge-sm.m-l-xs ({{unclaimedQuestions.length}})
+  -#   %li
+  -#     %a{"aria-expanded" => "false", "data-target" => "#tab_3", "data-toggle" => "tab", :href => ""}
+  -#       All Questions
+  -#       %span.badge.bg-primary.badge-sm.m-l-xs
+  -# .tab-content
+  -#   #tab_1.tab-pane
+  -#     %ul.list-group.list-group-alt.list-group-lg.no-borders.pull-in.m-b-none
+  -#       .m-l-lg.panel.b-a{'ng-repeat' => "question in unclaimedQuestions"}
+  -#         .panel-heading.pos-rlt.b-b.b-light
+  -#           %span.arrow.left
+  -#           %a{:href => ""} {{question.title}}
+  -#           %span.text-muted.m-l-sm.pull-right
+  -#             %i.fa.fa-clock-o
+  -#               %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+  -#         .panel-body
+  -#           %div Language: {{question.language}}
+  -#           %div Question: {{question.body}}
+  -#           %div{"ng-if" => "question.screenshot == false"} Picture: {{question.screenshot}}
+  -#           by
+  -#           %i.icon-fire
+  -#           %span {{question.student.name}}
+  -#           .m-t-sm
+  -#           .m-t-sm
+  -#             %a.btn.btn-default.btn-xs{:href => "", 'ng-click'=> "claimQuestion(question)"}
+  -#               %i.fa.fa-mail-reply.text-muted
+  -#               Claim Question
+  -#   #tab_2.tab-pane.active
+  -#     %ul.list-group.list-group-alt.list-group-lg.no-borders.pull-in.m-b-none
+  -#       .m-l-lg.panel.b-a{'ng-repeat' => "question in unclaimedQuestions"}
+  -#         .panel-heading.pos-rlt.b-b.b-light
+  -#           %span.arrow.left
+  -#           %a{:href => ""} {{question.title}}
+  -#           %span.text-muted.m-l-sm.pull-right
+  -#             %i.fa.fa-clock-o
+  -#               %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+  -#         .panel-body
+  -#           %div Language: {{question.language}}
+  -#           %div Question: {{question.body}}
+  -#           %div{"ng-if" => "question.screenshot == false"} Picture: {{question.screenshot}}
+  -#           by
+  -#           %i.icon-fire
+  -#           %span {{question.student.name}}
+  -#           .m-t-sm
+  -#           .m-t-sm
+  -#             %a.btn.btn-default.btn-xs{:href => "", 'ng-click'=> "claimQuestion(question)"}
+  -#               %i.fa.fa-mail-reply.text-muted
+  -#               Claim Question
+  -#   #tab_3.tab-pane
+  -#     %ul.list-group.list-group-lg.no-borders.pull-in.m-b-none
+  -#       %li.list-group-item
+  -#         %a.h4.text-primary.m-b-sm.block{:href => "#"} Mauris convallis mauris at pellentesque volutpat
+  -#         %p.b.wrapper-md.pos-rlt.bg-light.r.r-2x
+  -#           %span.arrow.top.pull-left.arrow-light>
+  -#           Lorem ipsum dolor sit amet, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum
+  -#       %li.list-group-item
+  -#         %a.h4.text-primary.m-b-sm.block{:href => "#"} Phasellus at ultricies neque, quis malesuada augu
+  -#         %p.b.wrapper-md.pos-rlt
+  -#           %span.arrow.top.pull-left>
+  -#           Fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum
+  -#       %li.list-group-item
+  -#         %a.h4.text-primary.m-b-sm.block{:href => "#"} Morbi nec nunc condimentum, egestas dui nec, fermentum diam
+  -#         %p.b.wrapper-md.pos-rlt.bg-info.text-lt.r.r-2x
+  -#           %span.arrow.top.pull-left.arrow-info>
+  -#           Vivamus vel tincidunt libero, vitae elementum ligula venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum
+  -#       %li.list-group-item
+  -#         %a.h4.text-primary.m-b-sm.block{:href => "#"} Vestibulum ullamcorper sodales nisi nec condimentum Mauris convallis
+  -#         %p.b.wrapper-md.pos-rlt
+  -#           %span.arrow.top.pull-left>
+  -#           Egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum
