@@ -1,5 +1,8 @@
 angular.module('alMakinah').controller('studentViewQuestionController', function ($scope, $http, $state, AuthService, $stateParams, server) {
 
+
+  $scope.server = server; 
+  
   AuthService.logged_in_user().then(function (user) {
     $scope.currentUser = user;
     }, function () {
