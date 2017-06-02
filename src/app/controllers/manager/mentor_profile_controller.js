@@ -1,5 +1,4 @@
 angular.module('alMakinah').controller('managerMentorProfile', function($scope,$stateParams,$http){
-  console.log($stateParams.id)
   $scope.mentorResolved = [];
 
   $http.get('http://localhost:3000/manager/questions.json',{ params: { filter: 'resolvedByMentor', mentor_id: $stateParams.id} }).then(
