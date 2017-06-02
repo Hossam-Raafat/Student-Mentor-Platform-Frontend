@@ -1,5 +1,5 @@
 %div.col-lg-10.col-lg-offset-1{"ng-controller" => "managerDashController"}
-  %h1.text-center Dahsboard
+  %h1.text-center Dahsboard 
   %div.col-lg-12.b-a
     %div.col-lg-5
       %canvas.chart.chart-pie{"chart-click" => "onClick", "chart-data" => "data1", "chart-labels" => "labels1", "chart-series" => "series", "chart-options" => "options1"}
@@ -44,9 +44,8 @@
                 %span {{question.rate.star}}/5
                   
                 
-              %p language: 
-                %span{"ng-if" => "question.language == 'ruby'"} Ruby
-                  %i.icon-diamond
+              %p language: {{question.language}}
+                
              
 
 
@@ -82,9 +81,7 @@
                 %span {{question.rate.star}}/5
                   
                 
-              %p language: 
-                %span{"ng-if" => "question.language == 'ruby'"} Ruby
-                  %i.icon-diamond
+              %p language: {{question.language}}
     %uib-tab
       %uib-tab-heading
         %i.icon-puzzle
@@ -109,9 +106,7 @@
            
             .line.line-lg.b-b.b-light
             .text-muted  
-              %p language: 
-                %span{"ng-if" => "question.language == 'ruby'"} Ruby
-                  %i.icon-diamond
+              %p language: {{question.language}}
               
 
 
