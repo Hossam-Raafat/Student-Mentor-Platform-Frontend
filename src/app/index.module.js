@@ -14,6 +14,8 @@
         'hm.readmore',
         'yaru22.angular-timeago',
         'angularMoment',
+        'chart.js'
+       
     ]);
 
 }).call(this);
