@@ -22,7 +22,8 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
     var callback = function(message) {
       //console.log(message.title);
       console.log(message.body);
-      $scope.questions.push(message.body);
+      $scope.questions.unshift(message.body);
+      $scope.unclaimedQuestions.unshift(message.body);
     };
     consumer.subscribe(callback).then(function(){
       // $scope.sendToMyChannel = function(message){
@@ -50,7 +51,7 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
       console.log(success);
       var questionIndex = $scope.unclaimedQuestions.indexOf(question);
       $scope.unclaimedQuestions.splice(questionIndex, 1);
-      $scope.claimedQuestions.push(question);
+      $scope.claimedQuestions.unshift(success.data);
       console.log($scope.claimedQuestions)
       },
       function(err) {
