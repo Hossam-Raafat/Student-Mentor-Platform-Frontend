@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('studentDashController', function ($scope, $http, $state, AuthService, $window, $stateParams, server) {
+angular.module('alMakinah').controller('studentDashController', function ($scope, $http, $state, AuthService, $window, $stateParams, server, toaster) {
   
   AuthService.logged_in_user().then(function (user) {
     $scope.currentUser   = user;
@@ -29,9 +29,9 @@ angular.module('alMakinah').controller('studentDashController', function ($scope
     }
   );
 
-  $scope.pop = function(){
-    toaster.pop('Question successfully deleted');
-  }
+  // $scope.pop = function(){
+  //   toaster.pop('Question successfully deleted');
+  // }
 
   $scope.deleteQuestion = function(question){
     $http.delete(server + '/student/questions/' + question.id + '.json').then(
@@ -39,10 +39,10 @@ angular.module('alMakinah').controller('studentDashController', function ($scope
         var index = $scope.currentStudentQuestions.indexOf(question);
         $scope.currentStudentQuestions.splice(index, 1);
 
-        toaster.pop('sucessfuly deleted your question', 'ok');
+        toaster.pop('sucessfuly deleted your question', "ok");
       },
       function(err){
-        $window.alert("can't delete calimed or answered questions");
+        $toaster.pop("can't delete calimed or answered questions");
         console.log(err);
       })
       
@@ -53,6 +53,8 @@ angular.module('alMakinah').controller('studentDashController', function ($scope
         console.log(success);
         question.get_downvotes = success.data.get_downvotes;
         question.get_upvotes = success.data.get_upvotes;
+
+        toaster.pop('Upvoted', "ok");
       },
       function(err){
         console.log(err);
@@ -64,6 +66,8 @@ angular.module('alMakinah').controller('studentDashController', function ($scope
         console.log(success);
         question.get_downvotes = success.data.get_downvotes;
         question.get_upvotes = success.data.get_upvotes;
+        toaster.pop('Upvoted', "ok");
+
       },
       function(err){
         console.log(err);

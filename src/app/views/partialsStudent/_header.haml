@@ -14,14 +14,14 @@
 / navbar collapse
 .collapse.pos-rlt.navbar-collapse.box-shadow.bg-gray
   %ul.nav.navbar-nav.navbar-right
-    %li.hidden-sm.hidden-md
     %li.dropdown{:"uib-dropdown" => ""}
       %a.dropdown-toggle.clear{"uib-dropdown-toggle" => "", :href => ""}
         %span.thumb-sm.avatar.pull-right.m-t-n-sm.m-b-n-sm.m-l-sm
           %img{:alt => "...", src: "/assets/images/blue_moon.jpg"}
         %span.hidden-sm.hidden-md {{ current_user.name }}
         %b.caret
-      %ul.dropdown-menu{"ng-controller" => "mentorLogController"}
+      / dropdown
+      %ul.dropdown-menu{"ng-controller" => "studentLogController"}
         %li
           %a{"ui-sref" => "logout","ng-click" => "signOutUser()"}
             %span Logout

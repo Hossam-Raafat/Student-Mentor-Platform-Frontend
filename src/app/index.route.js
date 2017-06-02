@@ -10,9 +10,9 @@
       if (user.configName == 'manager') {
         return user;
       }
-      $state.go('studentLayout.student');
+      $state.go('student');
     }, function () {
-      $state.go('studentLayout.student');
+      $state.go('student');
     });
   }
 
@@ -23,9 +23,9 @@
       if (user.configName == 'mentor') {
         return user;
       }
-      $state.go('studentLayout.student');
+      $state.go('student');
     }, function () {
-      $state.go('studentLayout.student');
+      $state.go('student');
     });
   }
 
@@ -62,8 +62,8 @@
         templateUrl: 'app/views/layouts/student_layout.html',
         abstract: true
       })
-      .state('studentLayout.student', {
-        url: '',
+      .state('student', {
+        url: '/student/auth',
         templateUrl: 'app/views/student/student_auth.html'
       })
       .state('studentLayout.studentAcceptInvitation', {
@@ -90,13 +90,6 @@
       })
       .state('studentLayout.studentViewQuestion', {
         url: 'student/view/question/{id:[0-9]{1,8}}',
-        templateUrl: 'app/views/student/student_view_question.html',
-        resolve: {
-          resolvedUser: CheckForAuthenticatedStudent
-        }
-      })
-      .state('studentLayout.studentProfile', {
-        url: 'view/student/{name:[a-zA-Z]{1,8}}',
         templateUrl: 'app/views/student/student_view_question.html',
         resolve: {
           resolvedUser: CheckForAuthenticatedStudent

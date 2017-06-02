@@ -9,6 +9,10 @@ angular.module('alMakinah').controller('studentViewQuestionController', function
       $state.go('student');
   });
 
+   $scope.back = function(){
+    $state.go('studentLayout.studentDash');
+  }
+
 
   $http.get(server + '/student/questions/'+$stateParams.id+'.json').then(
     function(success){

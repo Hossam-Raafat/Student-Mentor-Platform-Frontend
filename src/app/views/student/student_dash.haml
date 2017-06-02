@@ -1,84 +1,88 @@
-%div{"ng-controller" => "studentDashController"}
-  %h1 Welcome {{ currentUser.name }}
-  %h2 All answered questions ({{resolvedQuestions.length}})
-  %input{"ng-model" => "search.language", :placeholder => "filter by language", :type => "text"}
-  %table
-    %thead
-      %tr
-        %th{:rowspan => "2"} Submit By
-        %th{:colspan => "3"} questions
-        %th{:rowspan => "2"} Answers
-        %th{:rowspan => "2"} by
-        %th{:rowspan => "2"} votes
-      %tr
-        %th title
-        %th body
-        %th language
-    %tbody
-      %tr{"ng-repeat" => "quest in resolvedQuestions | filter: search"}
-        %td {{quest.student.name}}
-        %td 
-          %a{"ui-sref" => "studentLayout.studentViewQuestion({id:quest.id})"} {{quest.title}}
-        %td {{quest.body}}
-        %td {{quest.language}}
-        %td {{quest.response.answer}}
-        %td {{quest.mentor.name}}
-        %td {{quest.get_upvotes.length - quest.get_downvotes.length}}
-        / %td {{quest.votes_for.size}}
-        %td
-          %button{"ng-click" => "upVoteQuestion(quest)", :type => "submit"} Upvote
-          %button{"ng-click" => "downvoteVoteQuestion(quest)", :type => "submit"} Downvote  
-  %h2 Your questions
-  %table
-    %thead
-      %tr
-        %th{:rowspan => "2"} Submit By
-        %th{:colspan => "6"} questions
-        %th{:rowspan => "2"} Answers
-        %th{:rowspan => "2"} Answer By
-      %tr
-        %th title
-        %th body
-        %th language
-        %th answer
-        %th delete
-        %th edit
-    %tbody
-      %tr{"ng-repeat" => "question in currentStudentQuestions"}
-        %td {{question.student.name}}
-        %td 
-          %a{"ui-sref" => "studentLayout.studentViewQuestion({id:question.id})"} {{question.title}}
-        %td {{question.body}}
-        %td {{question.language}}
-        %td{"ng-if" => "question.response.status == true"} {{question.response.answer}}
-        %td{"ng-if" => "question.response.status == true"} {{question.mentor.name}}
-        %td{"ng-if" => "question.response.status == false"} Not answered
-        %td{"ng-if" => "question.response.status == false"} {{question.mentor.name}}
-        %td{"ng-if" => "question.response.status == nil"} Not claimed yet
-        %td{"ng-if" => "question.response.status == nil"}
-          %form{"ng-submit" => "deleteQuestion(question)"}
-            %button Delete
-        %td{"ng-if" => "question.response.status == nil"}
-          %a{"ui-sref" => "studentLayout.studentEditQuestion({id:question.id})"} Edit
-  %a{"ui-sref" => "studentLayout.studentRequest"} Ask a question
+%div.col-lg-10.col-md-offset-1.wrapper-md{"ng-controller" => "studentDashController"}
+  %h4 Welcome {{ currentUser.name }}
+  %form.m-b-md.ng-pristine.ng-valid{:action => "#"}
+    .input-group
+      %input.form-control.input-lg{"ng-model" => "search.language", :placeholder => "filter by language", :type => "text"}
+     
+  %uib-tabset{:active => "active"}
+    %uib-tab
+      %uib-tab-heading
+        %i.icon-like
+        Resolved {{resolvedQuestions.length}}
+      .col-lg-12.b-a
+        .panel.m-t-md{"ng-repeat" => "quest in resolvedQuestions | filter: search"}
+          .wrapper-lg
+            %h2.m-t-none
+            %a{"ui-sref" => "studentLayout.studentViewQuestion({id:quest.id})"}
+              %h3 {{quest.title}}
+            .text-muted
+              
+              %span Submited 
+              %i.icon-clock
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ quest.created_at}}"}
+              by
+              %i.icon-fire
+              %span {{quest.student.name}}
+              Answered by 
+              %i.icon-user
+              %span {{quest.mentor.name}} 
+            %div
+            %br
+              %p {{quest.body}}
+              %div
+                %h4 ANSWER:
+                %p{"hm-dots-class" => "dots", "hm-less-text" => "read less", "hm-limit" => "100", "hm-link-class" => "links", "hm-more-text" => "read more", "hm-read-more" => "", "hm-text" => "{{quest.response.answer}}"}
+            .line.line-lg.b-b.b-light
+            .text-muted
+              %button.btn.m-b-xs.btn-sm.btn-success.btn-addon{"ng-click" => "upVoteQuestion(quest)", :type => "submit"} Up
+                %i.icon-like.pull-left>
+              {{quest.get_upvotes.length - quest.get_downvotes.length}}
+              %button.btn.m-b-xs.btn-sm.btn-danger.btn-addon{"ng-click" => "downvoteVoteQuestion(quest)", :type => "submit"} Down
+                %i.icon-dislike.pull-right>
+            
+                 
+                
+              %p language: {{quest.language}}
+                %span{"ng-if" => "quest.language == 'ruby'"}
+                  %i.icon-diamond
+             
+    %uib-tab
+      %uib-tab-heading
+        %i.icon-list
+        Your questions {{currentStudentQuestions.length}}
+      .col-lg-12.b-a
+        .panel.m-t-md{"ng-repeat" => "question in currentStudentQuestions | filter: search"}
+          .wrapper-lg
+            %h2.m-t-none
+            %a{"ui-sref" => "studentLayout.studentViewQuestion({id:question.id})"}
+              %h3 {{question.title}}
+            .text-muted
+              
+              %span Submited 
+              %i.icon-clock
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+              by
+              %i.icon-fire
+              %span {{question.student.name}}
+              %span{"ng-if" => "question.response.status == null"}, not Claimed yet
+              %span{"ng-if" => "question.response.status == false"}, Claimed by
+                %i.icon-user
+                %span {{question.mentor.name}}
+              %span{"ng-if" => "question.response.status == true"}, Answered by
+                %i.icon-user
+                %span {{question.mentor.name}}
+            %div
+            %br
+              %p {{question.body}}
+              %div{"ng-if" => "question.response.status == true"}
+                %h4 ANSWER:
+                %p{"hm-dots-class" => "dots", "hm-less-text" => "read less", "hm-limit" => "100", "hm-link-class" => "links", "hm-more-text" => "read more", "hm-read-more" => "", "hm-text" => "{{question.response.answer}}"}
 
-.panel
-  .wrapper-lg
-    %h2.m-t-none
-      %a{:href => ""} Bootstrap 3: What you need to know
-    %div
-      %p
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris at pellentesque volutpat.
-      %h3 Html5 and CSS3
-      %p
-        Phasellus at ultricies neque, quis malesuada augue. Donec eleifend condimentum nisl eu consectetur. Integer eleifend, nisl venenatis consequat iaculis, lectus arcu malesuada sem, dapibus porta quam lacus eu neque.
-    .line.line-lg.b-b.b-light
-    .text-muted
-      %i.fa.fa-user.text-muted
-      by
-      %a.m-r-sm{:href => ""} Admin
-      %i.fa.fa-clock-o.text-muted
-      Feb 15, 2013
-      %a.m-l-sm{:href => ""}
-        %i.fa.fa-comment-o.text-muted
-        4 comments
+            .line.line-lg.b-b.b-light
+            .text-muted
+                                
+                
+              %p language: {{question.language}}
+                %span{"ng-if" => "question.language == 'ruby'"}
+                  %i.icon-diamond
+

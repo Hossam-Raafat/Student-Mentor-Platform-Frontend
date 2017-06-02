@@ -20,11 +20,10 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
 
     var consumer = new ActionCableChannel("NotificationChannel");
     var callback = function(message) {
-      console.log(message.title);
+      //console.log(message.title);
       console.log(message.body);
-      $scope.questions.push(message);
-      $scope.questions.push(message);
-
+      $scope.questions.unshift(message.body);
+      $scope.unclaimedQuestions.unshift(message.body);
     };
     consumer.subscribe(callback).then(function(){
       // $scope.sendToMyChannel = function(message){
@@ -52,7 +51,7 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
       console.log(success);
       var questionIndex = $scope.unclaimedQuestions.indexOf(question);
       $scope.unclaimedQuestions.splice(questionIndex, 1);
-      $scope.claimedQuestions.push(question);
+      $scope.claimedQuestions.unshift(success.data);
       console.log($scope.claimedQuestions)
       },
       function(err) {
@@ -102,4 +101,11 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
       console.log(error);
     });
   }
+  $scope.class = "red";
+  $scope.changeClass = function(){
+    if ($scope.class === "red")
+      $scope.class = "green";
+    else
+      $scope.class = "red";
+  };
 });

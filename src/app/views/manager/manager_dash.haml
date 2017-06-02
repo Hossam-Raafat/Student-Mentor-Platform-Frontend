@@ -1,7 +1,111 @@
-%div{"ng-controller" => "managerDashController"}
-  %h2 Manager Dahsboard
-  %h3 Number of unclaimed questions
-  %p {{unclaimedCount}}
-  %h3 Number of resolved questions
-  %p {{resolvedCount}} 
+%div.col-lg-10.col-lg-offset-1{"ng-controller" => "managerDashController"}
+  %h1.text-center Dashboard 
+  %div.col-lg-12.b-a
+    %div.col-lg-5
+      %canvas.chart.chart-pie{"chart-click" => "onClick", "chart-data" => "data1", "chart-labels" => "labels1", "chart-series" => "series", "chart-options" => "options1"}
+    %div.col-lg-5.col-lg-offset-2
+      %canvas.chart.chart-pie{"chart-data" => "data2", "chart-labels" => "labels2", "chart-options" => "options2"}
 
+
+%div.col-lg-10.col-md-offset-1.wrapper-md{"ng-controller" => "managerDashController"}
+  %form.m-b-md.ng-pristine.ng-valid{:action => "#"}
+    .input-group
+      %input.form-control.input-lg{"ng-model" => "search", :placeholder => "Search", :type => "text"}
+     
+  %uib-tabset{:active => "active"}
+    %uib-tab
+      %uib-tab-heading
+        %i.icon-list
+        All Questions
+      .col-lg-12.b-a
+        .panel.m-t-md{"ng-repeat" => "question in allQuestions | filter: search"}
+          .wrapper-lg
+            %h2.m-t-none
+            %h3 {{question.title}}
+            .text-muted
+              
+              %span Submited 
+              %i.icon-clock
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+              by
+              %i.icon-fire
+              %span 
+                %a{"ui-sref" => "managerLayout.managerStudentProfile({id:question.student.id})"} {{question.student.name}}
+              %span{"ng-if" => "question.response.status == false"} , Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later.
+            %div
+            %br
+              %p {{question.body}}
+              %div{"ng-if" => "question.response.status == true"}
+                %h4 ANSWER:
+                %p{"hm-dots-class" => "dots", "hm-less-text" => "read less", "hm-limit" => "100", "hm-link-class" => "links", "hm-more-text" => "read more", "hm-read-more" => "", "hm-text" => "{{question.response.answer}}"}
+            .line.line-lg.b-b.b-light
+            .text-muted
+              
+              %p{"ng-if" => "question.response.status == true"} Rate: 
+                %span {{question.rate.star}}/5
+                  
+                
+              %p language: {{question.language}}
+                
+             
+
+
+    %uib-tab
+      %uib-tab-heading
+        %i.icon-like
+        Resolved
+      .col-lg-12.b-a
+        .panel.m-t-md{"ng-repeat" => "question in resolvedQuestions | filter: search"}
+          .wrapper-lg
+            %h2.m-t-none
+            %h3 {{question.title}}
+            .text-muted
+              
+              %span Submited 
+              %i.icon-clock
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+              by
+              %i.icon-fire
+              %span 
+                %a{"ui-sref" => "managerLayout.managerStudentProfile({id:question.student.id})"} {{question.student.name}}
+              %span{"ng-if" => "question.response.status == false"} , Claimed {{question.response.created_at | amDifference : question.created_at : 'minutes' }} minutes later.
+            %div
+            %br
+              %p {{question.body}}
+              %div{"ng-if" => "question.response.status == true"}
+                %h4 ANSWER:
+                %p{"hm-dots-class" => "dots", "hm-less-text" => "read less", "hm-limit" => "100", "hm-link-class" => "links", "hm-more-text" => "read more", "hm-read-more" => "", "hm-text" => "{{question.response.answer}}"}
+            .line.line-lg.b-b.b-light
+            .text-muted
+              
+              %p{"ng-if" => "question.response.status == true"} Rate: 
+                %span {{question.rate.star}}/5
+                  
+                
+              %p language: {{question.language}}
+    %uib-tab
+      %uib-tab-heading
+        %i.icon-puzzle
+        Unclaimed
+      .col-lg-12.b-a
+        .panel.m-t-md{"ng-repeat" => "question in unclaimedQuestions | filter: search"}
+          .wrapper-lg
+            %h2.m-t-none
+            %h3 {{question.title}}
+            .text-muted
+              
+              %span Submited 
+              %i.icon-clock
+              %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+              by
+              %i.icon-fire
+              %span 
+                %a{"ui-sref" => "managerLayout.managerStudentProfile({id:question.student.id})"} {{question.student.name}}
+            %div
+            %br
+              %p {{question.body}}
+           
+            .line.line-lg.b-b.b-light
+            .text-muted  
+              %p language: {{question.language}}
+              

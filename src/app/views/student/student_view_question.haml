@@ -1,29 +1,32 @@
-%div{"ng-controller" => "studentViewQuestionController"}
-  %h1 Welcome {{ currentUser.name }}
-  %table
-    %thead
-      %tr
-        %th{:rowspan => "2"} Submit By
-        %th{:colspan => "3"} question
-        %th{:rowspan => "2"} Answer
-        %th{:rowspan => "2"} by
-        %th{:rowspan => "2"} votes
-      %tr
-        %th title
-        %th body
-        %th language
-    %tbody
-      %tr
-        %td {{question.student.name}}
-        %td {{question.title}}
-        %td {{question.body}}
-        %td {{question.language}}
-        %td {{question.response.answer}}
-        %td {{question.mentor.name}}
-        %td {{question.get_upvotes.length - question.get_downvotes.length}}
-        %td 
-          %img{ src: '{{ server + question.screenshot.url }}'}
-        / %td {{quest.votes_for.size}}
-        %td
-          %button{"ng-click" => "upVoteQuestion(question)", :type => "submit"} Upvote
-          %button{"ng-click" => "downvoteVoteQuestion(question)", :type => "submit"} Downvote
+%div.col-lg-10.col-md-offset-1.b-a.m-t-xxl{"ng-controller" => "studentViewQuestionController"}
+  .panel.m-t-md
+    .wrapper-lg
+      %h2.m-t-none
+      %h3 {{question.title}}
+      .text-muted    
+        %span Submited 
+        %i.icon-clock
+        %time-ago{:format => "MM/dd/yyyy", "from-time" => "{{ question.created_at}}"}
+        by
+        %i.icon-fire
+        %span {{question.student.name}}
+        Answered by 
+        %i.icon-user
+        %span {{question.mentor.name}} 
+      %div
+      %br
+        %p {{question.body}}
+        %div
+          %h4 ANSWER:
+          %p{"hm-dots-class" => "dots", "hm-less-text" => "read less", "hm-limit" => "100", "hm-link-class" => "links", "hm-more-text" => "read more", "hm-read-more" => "", "hm-text" => "{{question.response.answer}}"}
+      .line.line-lg.b-b.b-light
+      .text-muted
+        %button.btn.m-b-xs.btn-sm.btn-success.btn-addon{"ng-click" => "upVoteQuestion(question)", :type => "submit"} Up
+          %i.icon-like.pull-left>
+        {{question.get_upvotes.length - question.get_downvotes.length}}
+        %button.btn.m-b-xs.btn-sm.btn-danger.btn-addon{"ng-click" => "downvoteVoteQuestion(question)", :type => "submit"} Down
+          %i.icon-dislike.pull-right>
+        %p language: {{question.language}}
+          %span{"ng-if" => "question.language == 'ruby'"}
+            %i.icon-diamond
+        %button.btn.btn-sm.btn-primary{"ng-click" => "back()", :type => "button"} back
