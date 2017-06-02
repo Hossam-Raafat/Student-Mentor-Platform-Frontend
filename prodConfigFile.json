@@ -1,0 +1,4 @@
+{
+  "server": "http://mentor-scheduling.herokuapp.com",
+  "actionCable": "ws://mentor-scheduling.herokuapp.com/cable"
+}

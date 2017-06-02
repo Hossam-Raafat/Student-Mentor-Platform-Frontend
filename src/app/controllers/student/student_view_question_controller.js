@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('studentViewQuestionController', function ($scope, $http, $state, AuthService, $stateParams) {
+angular.module('alMakinah').controller('studentViewQuestionController', function ($scope, $http, $state, AuthService, $stateParams, server) {
 
   AuthService.logged_in_user().then(function (user) {
     $scope.currentUser = user;
@@ -7,7 +7,7 @@ angular.module('alMakinah').controller('studentViewQuestionController', function
   });
 
 
-  $http.get('http://localhost:3000/student/questions/'+$stateParams.id+'.json').then(
+  $http.get(server + '/student/questions/'+$stateParams.id+'.json').then(
     function(success){
       console.log(success)
       $scope.question = success.data;
@@ -17,7 +17,7 @@ angular.module('alMakinah').controller('studentViewQuestionController', function
     }
   );
   $scope.upVoteQuestion = function(question){
-    $http.post('http://localhost:3000/student/questions/' + question.id + '/votes.json',{ filter: 'upvote' } ).then(
+    $http.post(server + '/student/questions/' + question.id + '/votes.json',{ filter: 'upvote' } ).then(
       function(success){
         console.log(success);
         question.get_downvotes = success.data.get_downvotes;
@@ -28,7 +28,7 @@ angular.module('alMakinah').controller('studentViewQuestionController', function
       })
   }
   $scope.downvoteVoteQuestion = function(question){
-    $http.post('http://localhost:3000/student/questions/' + question.id + '/votes.json').then(
+    $http.post(server + '/student/questions/' + question.id + '/votes.json').then(
       function(success){
         console.log(success);
         question.get_downvotes = success.data.get_downvotes;

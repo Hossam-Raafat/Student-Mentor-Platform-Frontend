@@ -15,7 +15,9 @@
         'yaru22.angular-timeago',
         'angularMoment',
         'ngFileUpload',
-        'ngActionCable'
+        'ngActionCable',
+        'chart.js',
+        'myApp.config'
     ]);
 
 }).call(this);

@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('studentEditController', function ($scope, $http, $state, AuthService, $stateParams) {
+angular.module('alMakinah').controller('studentEditController', function ($scope, $http, $state, AuthService, $stateParams, server) {
 
   AuthService.logged_in_user().then(function (user) {
     $scope.currentUser = user;
@@ -12,7 +12,7 @@ angular.module('alMakinah').controller('studentEditController', function ($scope
     //   body: question.body,
     //   language: question.language
     // }
-    $http.put('http://localhost:3000/student/questions/' + $scope.question.id + '.json', { question: $scope.question }).then(
+    $http.put(server + '/student/questions/' + $scope.question.id + '.json', { question: $scope.question }).then(
       function(success){
         question = success.data;
         // toaster.pop('question updated successfully');
@@ -22,7 +22,7 @@ angular.module('alMakinah').controller('studentEditController', function ($scope
         console.log(err);
       })
   }
-  $http.get('http://localhost:3000/student/questions/'+$stateParams.id+'.json').then(
+  $http.get(server + '/student/questions/'+$stateParams.id+'.json').then(
       function(success){
         console.log(success)
         $scope.question = success.data;

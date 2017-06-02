@@ -3,6 +3,8 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var gulpNgConfig = require('gulp-ng-config');
+
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
@@ -47,7 +49,13 @@ browserSync.use(browserSyncSpa({
   selector: '[ng-app]'// Only needed for angular apps
 }));
 
-gulp.task('serve', ['watch'], function () {
+gulp.task('env:dev', function(){
+  gulp.src('configFile.json')
+  .pipe(gulpNgConfig('myApp.config'))
+  .pipe(gulp.dest(conf.paths.tmp + '/serve/app'))
+});
+
+gulp.task('serve', ['watch', 'env:dev'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 

@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('managerLogController', function ($scope, $auth, $http, AuthService, $state) {
+angular.module('alMakinah').controller('managerLogController', function ($scope, $auth, $http, AuthService, $state, server) {
 
   // listening to the student login broadcast which is triggered from the auth service
   $scope.$on('managerLoggedIn', function () {

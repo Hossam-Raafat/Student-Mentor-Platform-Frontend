@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('studentAcceptCtrl', function ($scope, $auth, $http, $stateParams, $state) {
+angular.module('alMakinah').controller('studentAcceptCtrl', function ($scope, $auth, $http, $stateParams, $state, server) {
 
 
   $scope.accept = function () {
@@ -8,7 +8,7 @@ angular.module('alMakinah').controller('studentAcceptCtrl', function ($scope, $a
       name: $scope.acceptForm.name,
       invitation_token: $stateParams.token // to send the token with invitee's new password
     };
-    $http.put('http://localhost:3000/student/auth/invitation', {
+    $http.put(server + '/student/auth/invitation', {
       student: x
     }).then(
       // we used 'put' because the student was already generated, but

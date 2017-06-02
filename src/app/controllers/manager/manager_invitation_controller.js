@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('managerInviteCtrl', function($scope, $auth, $http) {
+angular.module('alMakinah').controller('managerInviteCtrl', function($scope, $auth, $http, server) {
 
         // $auth.validateUser()
         // .then(function(user) {
@@ -10,7 +10,7 @@ angular.module('alMakinah').controller('managerInviteCtrl', function($scope, $au
           var x ={
             email: $scope.mentorEmail
           }
-          $http.post('http://localhost:3000/mentor/auth/invitation',{mentor: x}).then(
+          $http.post(server + '/mentor/auth/invitation',{mentor: x}).then(
             function(success){
               console.log(success);
             },
@@ -26,7 +26,7 @@ angular.module('alMakinah').controller('managerInviteCtrl', function($scope, $au
             email: $scope.studentEmail,
             program: $scope.studentProgram
           }
-          $http.post('http://localhost:3000/student/auth/invitation',{student: x}).then(
+          $http.post(server + '/student/auth/invitation',{student: x}).then(
             function(success){
               console.log(success);
             },

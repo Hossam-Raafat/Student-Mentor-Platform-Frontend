@@ -43,7 +43,7 @@
   }
 
 
-    // $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
+    $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
     // rid of the '/#!/' in the url.
 
     // HOME STATES AND NESTED VIEWS ========================================

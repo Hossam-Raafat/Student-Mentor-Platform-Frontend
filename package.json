@@ -1,7 +1,9 @@
 {
   "name": "al-makinah",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-ng-config": "^1.4.0"
+  },
   "scripts": {
     "test": "gulp test"
   },

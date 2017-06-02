@@ -1,7 +1,7 @@
-angular.module('alMakinah').controller('managerStudents', function ($scope, $http) {
+angular.module('alMakinah').controller('managerStudents', function ($scope, $http, server) {
   $scope.allStudents = [];
 
-  $http.get('http://localhost:3000/manager/students.json').then(
+  $http.get(server + '/manager/students.json').then(
       function(success) {
         console.log(success)
         $scope.allStudents = success.data;

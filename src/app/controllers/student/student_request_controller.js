@@ -1,4 +1,4 @@
-angular.module('alMakinah').controller('studentRequestController', function ($scope, $http, $state, AuthService, Upload) {
+angular.module('alMakinah').controller('studentRequestController', function ($scope, $http, $state, AuthService, Upload, server) {
 
   AuthService.logged_in_user().then(function (user) {
     $scope.currentUser = user;
@@ -16,7 +16,7 @@ angular.module('alMakinah').controller('studentRequestController', function ($sc
     }
 
     Upload.upload({
-      url: 'http://localhost:3000/student/questions.json',
+      url: server + '/student/questions.json',
       method: 'post',
       data: { question: add }
     }).then(

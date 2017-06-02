@@ -1,5 +1,4 @@
-angular.module('alMakinah').controller('studentAuthController', function ($scope, $auth, $state, $window, AuthService) {
-
+angular.module('alMakinah').controller('studentAuthController', function ($scope, $auth, $state, $window, AuthService, server) {
 
   $scope.login = function () {
     $auth.submitLogin($scope.loginForm, {

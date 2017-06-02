@@ -1,7 +1,7 @@
-angular.module('alMakinah').controller('managerDashController', function ($scope, $http) {
+angular.module('alMakinah').controller('managerDashController', function ($scope, $http, server) {
   $scope.resolvedQuestions = [];
 
-  $http.get('http://localhost:3000/manager/questions.json',{ params: { filter: 'resolved'} }).then(
+  $http.get(server + '/manager/questions.json',{ params: { filter: 'resolved'} }).then(
       function(success) {
         console.log(success)
         $scope.resolvedQuestions = success.data;
@@ -15,7 +15,7 @@ angular.module('alMakinah').controller('managerDashController', function ($scope
 
   $scope.unclaimedQuestions = [];
 
-  $http.get('http://localhost:3000/manager/questions.json',{ params: { filter: 'unclaimed'} }).then(
+  $http.get(server + '/manager/questions.json',{ params: { filter: 'unclaimed'} }).then(
       function(success) {
         $scope.unclaimedQuestions = success.data;   
         $scope.unclaimedCount = $scope.unclaimedQuestions.length;   
