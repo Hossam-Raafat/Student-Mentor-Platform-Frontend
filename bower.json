@@ -20,6 +20,8 @@
     "angular-read-more": "^1.0.6",
     "angular-timeago": "^0.4.5",
     "angular-moment": "^1.0.1",
+    "angular-chart.js": "^1.1.1",
+    "font-awesome": "^4.7.0",
     "ng-file-upload": "^12.2.13",
     "angular-actioncable": "^1.1.1"
   },
