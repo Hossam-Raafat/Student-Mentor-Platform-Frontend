@@ -30,7 +30,7 @@ gulp.task('partials', ['markups'], function () {
 });
 
 gulp.task('env:prod', function(){
-  gulp.src('configFile.json')
+  gulp.src('prodConfigFile.json')
   .pipe(gulpNgConfig('myApp.config'))
   .pipe(gulp.dest(conf.paths.tmp + '/serve/app'))
 });
