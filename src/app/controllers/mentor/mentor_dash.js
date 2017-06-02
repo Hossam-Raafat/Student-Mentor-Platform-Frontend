@@ -100,4 +100,11 @@ angular.module('alMakinah').controller('mentorDashController', function ($scope,
       console.log(error);
     });
   }
+  $scope.class = "red";
+  $scope.changeClass = function(){
+    if ($scope.class === "red")
+      $scope.class = "green";
+    else
+      $scope.class = "red";
+  };
 });
