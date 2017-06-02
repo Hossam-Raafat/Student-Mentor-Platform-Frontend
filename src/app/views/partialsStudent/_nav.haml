@@ -1,0 +1,12 @@
+/ list
+%ul.nav
+  %li.hidden-folded.padder.m-t.m-b-sm.text-muted.text-xs
+    %span{:translate => "aside.nav.HEADER"} Navigation
+  %li{"ui-sref-active" => "active"}
+    %a{"ui-sref" => "studentLayout.studentDash"}
+      %i.icon-user
+      %span.font-bold Dashboard
+  %li{"ui-sref-active" => "active"}
+    %a{"ui-sref" => "studentLayout.studentRequest"}
+      %i.icon-pencil
+      %span.font-bold Submit a question

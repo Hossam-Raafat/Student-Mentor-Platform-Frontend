@@ -1,16 +1,22 @@
-%h1 Ask your question here
-%div{"ng-controller" => "studentRequestController"}
-  %form{"ng-submit" => "addQuestion()"}
-    %p
-      %label{:for => "title"} Title
-      %input#title{"ng-model" => "titleForm", :required => "", :type => "text"}
-    %p
-      %label{:for => "body"} Body
-      %input#body{"ng-model" => "bodyForm", :required => "", :type => "text"}
-    %p
-      %label{:for => "language"} language
-      %input#language{"ng-model" => "languageForm", :required => "", :type => "text"}
-    %p
-      %label{:for => "screenshot"} screenshot
-      %input#screenshot{"ng-model" => "screenshotForm","ngf-select" => "", :type => "file"}
-    %button{ type: "submit" } Submit
+%div.col-lg-8.col-md-offset-2.m-t-xxl{"ng-controller" => "studentRequestController"}
+  .panel.panel-default.m-t-xxl
+    .panel-heading.font-bold Submit Your question
+    .panel-body
+      %form.ng-pristine.ng-valid{"ng-submit" => "addQuestion()"}
+        .form-group
+          %input.form-control{"ng-model" => "titleForm", :placeholder => "insert title", :required => "" , :type => "text"}
+        .form-group
+          %textarea.form-control{"ng-model" => "bodyForm", :placeholder => "Type your question", :required => "", :rows => "6"}
+        %select.form-control.m-b{"ng-model" => "languageForm", :name => "account"}
+          %option{:disabled => "disabled", :selected => "selected", :value => ""} Choose language
+          %option{:value => "ruby"} ruby
+          %option{:value => "javascript"} javascript
+          %option{:value => "css"} css
+          %option{:value => "html"} html
+          %option{:value => "terminal"} terminal
+          %option{:value => "other"} other
+
+        %input#screenshot{"ng-model" => "screenshotForm","ngf-select" => "", :type => "file"}
+        %br
+        %button.btn.btn-sm.btn-primary{:type => "submit"} Submit
+        %button.btn.btn-sm.btn-primary{"ng-click" => "back()", :type => "button"} cancel

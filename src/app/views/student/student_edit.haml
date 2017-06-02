@@ -9,8 +9,16 @@
       %input#body{"ng-model" => "question.body", :required => "", :type => "text"}
     %p
       %label{:for => "language"} language
-      %input#language{"ng-model" => "question.language", :required => "", :type => "text"}
+      %select#language{"ng-model" => "languageForm", :name => "languageList"}
+        %option{:disabled => "disabled", :selected => "selected", :value => ""} {{question.language}}
+        %option{:value => "Ruby"} Ruby
+        %option{:value => "Javascript"} Javascript
+        %option{:value => "CSS"} CSS
+        %option{:value => "HTML"} HTML
+        %option{:value => "other"} other
     %p
       %label{:for => "screenshot"} screenshot
       %input#screenshot{"ng-model" => "question.screenshot","ngf-select" => "", :type => "file"}
     %button Edit
+    %button{type: "button"}
+      %a{"ui-sref" => "studentLayout.studentDash"} cancel

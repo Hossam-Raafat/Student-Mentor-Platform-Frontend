@@ -6,7 +6,9 @@ angular.module('alMakinah').controller('studentRequestController', function ($sc
       $state.go('student');
   });
 
-
+  $scope.back = function(){
+    $state.go('studentLayout.studentDash');
+  }
   $scope.addQuestion = function(){
     var add = {
       title: $scope.titleForm,
