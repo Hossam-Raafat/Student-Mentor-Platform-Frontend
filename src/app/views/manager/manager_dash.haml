@@ -1,10 +1,11 @@
 %div.col-lg-10.col-lg-offset-1{"ng-controller" => "managerDashController"}
-  %h1.text-center Dahsboard 
+  %h1.text-center Dashboard 
   %div.col-lg-12.b-a
     %div.col-lg-5
       %canvas.chart.chart-pie{"chart-click" => "onClick", "chart-data" => "data1", "chart-labels" => "labels1", "chart-series" => "series", "chart-options" => "options1"}
     %div.col-lg-5.col-lg-offset-2
       %canvas.chart.chart-pie{"chart-data" => "data2", "chart-labels" => "labels2", "chart-options" => "options2"}
+
 
 %div.col-lg-10.col-md-offset-1.wrapper-md{"ng-controller" => "managerDashController"}
   %form.m-b-md.ng-pristine.ng-valid{:action => "#"}
@@ -108,7 +109,3 @@
             .text-muted  
               %p language: {{question.language}}
               
-
-
-
-  

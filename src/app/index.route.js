@@ -43,7 +43,7 @@
   }
 
 
-    $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
+    // $locationProvider.html5Mode(true); // I added this line and the <base href="/"> in the html to get
     // rid of the '/#!/' in the url.
 
     // HOME STATES AND NESTED VIEWS ========================================
@@ -71,19 +71,33 @@
         templateUrl: 'app/views/student/student_accept_invitation.html'
       })
       .state('studentLayout.studentDash', {
-        url: 'student/dash',
+        url: 'student',
         templateUrl: 'app/views/student/student_dash.html'
       })
       .state('studentLayout.studentRequest', {
-        url: 'request',
+        url: 'student/request',
         templateUrl: 'app/views/student/student_request.html',
         resolve: {
           resolvedUser: CheckForAuthenticatedStudent
         }
       })
       .state('studentLayout.studentEditQuestion', {
-        url: 'edit/question/{id:[0-9]{1,8}}',
+        url: 'student/edit/question/{id:[0-9]{1,8}}',
         templateUrl: 'app/views/student/student_edit.html',
+        resolve: {
+          resolvedUser: CheckForAuthenticatedStudent
+        }
+      })
+      .state('studentLayout.studentViewQuestion', {
+        url: 'student/view/question/{id:[0-9]{1,8}}',
+        templateUrl: 'app/views/student/student_view_question.html',
+        resolve: {
+          resolvedUser: CheckForAuthenticatedStudent
+        }
+      })
+      .state('studentLayout.studentProfile', {
+        url: 'view/student/{name:[a-zA-Z]{1,8}}',
+        templateUrl: 'app/views/student/student_view_question.html',
         resolve: {
           resolvedUser: CheckForAuthenticatedStudent
         }
@@ -148,8 +162,8 @@
       templateUrl: 'app/views/layouts/mentor_layout.html',
       abstract: true
     })
-    .state('mentorLayout.mentor', {
-      url: '/auth',
+    .state('mentor', {
+      url: '/mentor/auth',
       templateUrl: 'app/views/mentor/mentor_auth.html'
     })
     .state('mentorLayout.mentorAcceptInvitation', {

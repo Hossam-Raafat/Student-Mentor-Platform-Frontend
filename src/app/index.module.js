@@ -14,8 +14,9 @@
         'hm.readmore',
         'yaru22.angular-timeago',
         'angularMoment',
-        'chart.js'
-       
+        'chart.js',
+        'ngFileUpload',
+        'ngActionCable'
     ]);
 
 }).call(this);
